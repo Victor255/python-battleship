@@ -31,7 +31,7 @@ class GameBattle(object):
         del self.show_board_one[:]
         del self.show_board_two[:]
 
-    def generate_board_player_one_to_check(self):
+    def board_player_one_to_check(self):
         for l in range(0, 10):
             self.board_player_one_to_check.append(["-"] * 10)
 
@@ -83,7 +83,7 @@ class GameBattle(object):
             print "|" + "|".join(o) + "|" + str(number)
             number+=1
 
-    def valid_insert_row_and_column_by_user(self):
+    def valid_row_column(self):
         while True:
             try:
                 insert_row = raw_input("\nInsert row: ")
@@ -96,8 +96,8 @@ class GameBattle(object):
                 print "Only can insert integer numbers"
         return insert_row, insert_column
 
-    def valid_position_bomb(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def position_bomb(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             bomb = True
@@ -115,7 +115,7 @@ class GameBattle(object):
             bomb = True
             while bomb == True:
                 
-                row_bomb, column_bomb = self.valid_insert_row_and_column_by_user()
+                row_bomb, column_bomb = self.valid_row_column()
                 if row_bomb > 10 or column_bomb > 10:
                     print "this ship is not in the ocean"
                     bomb = True
@@ -129,7 +129,7 @@ class GameBattle(object):
                         bomb = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the bomb\n"
-            row_bomb, column_bomb = self.valid_insert_row_and_column_by_user()
+            row_bomb, column_bomb = self.valid_row_column()
             bomb = True
             while bomb == True:
                 if self.board_player_two_to_check[row_bomb-1][column_bomb-1] == "-":
@@ -138,11 +138,11 @@ class GameBattle(object):
                     break
                 elif self.board_player_two_to_check[row_bomb-1][column_bomb-1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_bomb, column_bomb = self.valid_insert_row_and_column_by_user()
+                    row_bomb, column_bomb = self.valid_row_column()
                     bomb = True
 
-    def valid_position_ship_two_horizontal(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def ship_two_horizontal(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             row_ship_two_horizontal = random.randint(1,10)
@@ -161,7 +161,7 @@ class GameBattle(object):
         elif aleatory_or_no == "no aleatory one":
             print "Insert your coordinates to put the ship"
             print "of two parts in horizontal orientation\n"
-            row_ship_two_horizontal, column_ship_two_horizontal = self.valid_insert_row_and_column_by_user()
+            row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
             ship2 = True
             while ship2 == True:
                 if self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
@@ -171,12 +171,12 @@ class GameBattle(object):
                     break
                 elif self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_two_horizontal, column_ship_two_horizontal = self.valid_insert_row_and_column_by_user()
+                    row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
                     ship2 = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the ship"
             print "of two parts in horizontal orientation\n"
-            row_ship_two_horizontal, column_ship_two_horizontal = self.valid_insert_row_and_column_by_user()
+            row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
             ship2 = True
             while ship2 == True:
                 if self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
@@ -186,11 +186,11 @@ class GameBattle(object):
                     break
                 elif self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_two_horizontal, column_ship_two_horizontal = self.valid_insert_row_and_column_by_user()
+                    row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
                     ship2 = True
 
-    def valid_position_ship_two_vertical(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def ship_two_vertical(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             row_ship_two_vertical = random.randint(1,9)
@@ -209,7 +209,7 @@ class GameBattle(object):
         elif aleatory_or_no == "no aleatory one":
             print "Insert your coordinates to put the ship"
             print "of two parts in vertical orientation\n"
-            row_ship_two_vertical, column_ship_two_vertical = self.valid_insert_row_and_column_by_user()
+            row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
             ship2 = True
             while ship2 == True:
                 if self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical] == "-":
@@ -219,12 +219,12 @@ class GameBattle(object):
                     break
                 elif self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_two_vertical, column_ship_two_vertical = self.valid_insert_row_and_column_by_user()
+                    row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
                     ship2 = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the ship"
             print "of two parts in vertical orientation\n"
-            row_ship_two_vertical, column_ship_two_vertical = self.valid_insert_row_and_column_by_user()
+            row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
             ship2 = True
             while ship2 == True:
                 if self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical] == "-":
@@ -234,11 +234,11 @@ class GameBattle(object):
                     break
                 elif self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
                     print "\nThereThere is a ship in this coordinate\n"
-                    row_ship_two_vertical, column_ship_two_vertical = self.valid_insert_row_and_column_by_user()
+                    row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
                     ship2 = True
 
-    def valid_position_ship_three_horizontal(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def ship_three_horizontal(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             row_ship_three_horizontal = random.randint(1,10)
@@ -260,7 +260,7 @@ class GameBattle(object):
         elif aleatory_or_no == "no aleatory one":
             print "Insert your coordinates to put the ship"
             print "of three parts in horizontal orientation\n"
-            row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
+            row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
             ship3 = True
             while ship3 == True:
                 if self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
@@ -273,12 +273,12 @@ class GameBattle(object):
                 elif self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
                 or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
+                    row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
                     ship3 = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the ship"
             print "of three parts in horizontal orientation\n"
-            row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
+            row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
             ship3 = True
             while ship3 == True:
                 if self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
@@ -291,11 +291,11 @@ class GameBattle(object):
                 elif self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
                 or self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
+                    row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
                     ship3 = True
 
-    def valid_position_ship_three_vertical(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def ship_three_vertical(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             row_ship_three_vertical = random.randint(1,8)
@@ -317,7 +317,7 @@ class GameBattle(object):
         elif aleatory_or_no == "no aleatory one":
             print "Insert your coordinates to put the ship"
             print "of three parts in vertical orientation\n"
-            row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
+            row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
             ship3 = True
             while ship3 == True:
                 if self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
@@ -330,12 +330,12 @@ class GameBattle(object):
                 elif self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
                 or self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
+                    row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
                     ship3 = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the ship"
             print "of three parts in vertical orientation\n"
-            row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
+            row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
             ship3 = True
             while ship3 == True:
                 if self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
@@ -348,11 +348,11 @@ class GameBattle(object):
                 elif self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
                 or self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
+                    row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
                     ship3 = True
 
-    def valid_position_ship_four_horizontal(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def ship_four_horizontal(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             row_ship_four_horizontal = random.randint(1,10)
@@ -375,7 +375,7 @@ class GameBattle(object):
         elif aleatory_or_no == "no aleatory one":
             print "Insert your coordinates to put the ship"
             print "of four parts in horizontal orientation\n"
-            row_ship_four_horizontal, column_ship_four_horizontal = self.valid_insert_row_and_column_by_user()
+            row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
             ship4 = True
             while ship4 == True:
                 if self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
@@ -389,12 +389,12 @@ class GameBattle(object):
                 elif self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
                 or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_horizontal, column_ship_four_horizontal = self.valid_insert_row_and_column_by_user()
+                    row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
                     ship4 = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the ship"
             print "of four parts in horizontal orientation\n"
-            row_ship_four_horizontal, column_ship_four_horizontal = self.valid_insert_row_and_column_by_user()
+            row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
             ship4 = True
             while ship4 == True:
                 if self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
@@ -408,11 +408,11 @@ class GameBattle(object):
                 elif self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
                 or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_horizontal, column_ship_four_horizontal = self.valid_insert_row_and_column_by_user()
+                    row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
                     ship4 = True
 
-    def valid_position_ship_four_vertical(self, aleatory_or_no):
-        self.generate_board_player_one_to_check()
+    def ship_four_vertical(self, aleatory_or_no):
+        self.board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             row_ship_four_vertical = random.randint(1,7)
@@ -435,7 +435,7 @@ class GameBattle(object):
         elif aleatory_or_no == "no aleatory one":
             print "Insert your coordinates to put the ship"
             print "of four parts in vertical orientation\n"
-            row_ship_four_vertical, column_ship_four_vertical = self.valid_insert_row_and_column_by_user()
+            row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
             ship4 = True
             while ship4 == True:
                 if self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
@@ -449,12 +449,12 @@ class GameBattle(object):
                 elif self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
                 or self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_vertical, column_ship_four_vertical = self.valid_insert_row_and_column_by_user()
+                    row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
                     ship4 = True
         elif aleatory_or_no == "no aleatory two":
             print "Insert your coordinates to put the ship"
             print "of four parts in vertical orientation\n"
-            row_ship_four_vertical, column_ship_four_vertical = self.valid_insert_row_and_column_by_user()
+            row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
             ship4 = True
             while ship4 == True:
                 if self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
@@ -468,11 +468,11 @@ class GameBattle(object):
                 elif self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
                 or self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
                     print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_vertical, column_ship_four_vertical = self.valid_insert_row_and_column_by_user()
+                    row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
                     ship4 = True
 
 class SinglePlayer(GameBattle):
-    def valid_guess_given_by_user(self):
+    def alone_the_user(self):
         while True:
             try:
                 guess_row = raw_input("\nGuess the row: ")
@@ -486,34 +486,22 @@ class SinglePlayer(GameBattle):
         return guess_row, guess_column
 
     def player_alone(self):
-        self.generate_board_player_one_to_check()
+        self.board_player_one_to_check()
         self.generate_board_player_one()
-        row_bomb, column_bomb = self.valid_position_bomb("aleatory")
-        row_ship_two_horizontal, column_ship_two_horizontal = self.valid_position_ship_two_horizontal("aleatory")
-        row_ship_two_vertical, column_ship_two_vertical = self.valid_position_ship_two_vertical("aleatory")
-        row_ship_three_horizontal, column_ship_three_horizontal = self. valid_position_ship_three_horizontal("aleatory")
-        row_ship_three_vertical, column_ship_three_vertical = self.valid_position_ship_three_vertical("aleatory")
-        row_ship_four_horizontal, column_ship_four_horizontal = self.valid_position_ship_four_horizontal("aleatory")
-        row_ship_four_vertical, column_ship_four_vertical = self.valid_position_ship_four_vertical("aleatory")
+        row_bomb, column_bomb = self.position_bomb("aleatory")
+        row_ship_two_horizontal, column_ship_two_horizontal = self.ship_two_horizontal("aleatory")
+        row_ship_two_vertical, column_ship_two_vertical = self.ship_two_vertical("aleatory")
+        row_ship_three_horizontal, column_ship_three_horizontal = self. ship_three_horizontal("aleatory")
+        row_ship_three_vertical, column_ship_three_vertical = self.ship_three_vertical("aleatory")
+        row_ship_four_horizontal, column_ship_four_horizontal = self.ship_four_horizontal("aleatory")
+        row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("aleatory")
         print "bomb"
         print row_bomb, column_bomb
-        print "\nship of two h"
-        print row_ship_two_horizontal, column_ship_two_horizontal
-        print "\nship of two v"
-        print row_ship_two_vertical, column_ship_two_vertical
-        print "\nship of three h"
-        print row_ship_three_horizontal, column_ship_three_horizontal
-        print "\nship of three v"
-        print row_ship_three_vertical, column_ship_three_vertical
-        print "\nship of four h"
-        print row_ship_four_horizontal, column_ship_four_horizontal
-        print "\nship of four v"
-        print row_ship_four_vertical, column_ship_four_vertical
         time.sleep(1)
         self.print_board_player_one()
         life = 0
         while life <= 10:
-            guess_row, guess_column = self.valid_guess_given_by_user()
+            guess_row, guess_column = self.alone_the_user()
             if guess_row == row_bomb and guess_column == column_bomb:
                 self.board_player_one[guess_row-1][guess_column-1] = "#"
                 self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
@@ -673,27 +661,27 @@ class MultiPlayer(SinglePlayer):
         self.generate_show_board_one()
         self.print_show_board_one()
         time.sleep(1)
-        row_bomb, column_bomb = self.valid_position_bomb("no aleatory one")
+        row_bomb, column_bomb = self.position_bomb("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_bomb-1][column_bomb-1] = "#"
         self.print_show_board_one()
         time.sleep(1)
-        row_ship_two_horizontal, column_ship_two_horizontal = self.valid_position_ship_two_horizontal("no aleatory one")
+        row_ship_two_horizontal, column_ship_two_horizontal = self.ship_two_horizontal("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
         self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
         self.print_show_board_one()
         time.sleep(1)
-        row_ship_two_vertical, column_ship_two_vertical = self.valid_position_ship_two_vertical("no aleatory one")
+        row_ship_two_vertical, column_ship_two_vertical = self.ship_two_vertical("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
         self.show_board_one[row_ship_two_vertical][column_ship_two_vertical-1] = "B"
         self.print_show_board_one()
         time.sleep(1)
-        row_ship_three_horizontal, column_ship_three_horizontal = self. valid_position_ship_three_horizontal("no aleatory one")
+        row_ship_three_horizontal, column_ship_three_horizontal = self. ship_three_horizontal("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "C"
@@ -701,7 +689,7 @@ class MultiPlayer(SinglePlayer):
         self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "C"
         self.print_show_board_one()
         time.sleep(1)
-        row_ship_three_vertical, column_ship_three_vertical = self.valid_position_ship_three_vertical("no aleatory one")
+        row_ship_three_vertical, column_ship_three_vertical = self.ship_three_vertical("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "D"
@@ -709,7 +697,7 @@ class MultiPlayer(SinglePlayer):
         self.show_board_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "D"
         self.print_show_board_one()
         time.sleep(1)
-        row_ship_four_horizontal, column_ship_four_horizontal = self.valid_position_ship_four_horizontal("no aleatory one")
+        row_ship_four_horizontal, column_ship_four_horizontal = self.ship_four_horizontal("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "E"
@@ -718,7 +706,7 @@ class MultiPlayer(SinglePlayer):
         self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "E"
         self.print_show_board_one()
         time.sleep(1)
-        row_ship_four_vertical, column_ship_four_vertical = self.valid_position_ship_four_vertical("no aleatory one")
+        row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("no aleatory one")
         self.clear()
         time.sleep(0)
         self.show_board_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "F"
@@ -737,27 +725,27 @@ class MultiPlayer(SinglePlayer):
         self.generate_show_board_two()
         self.print_show_board_two()
         time.sleep(1)
-        row_bomb2, column_bomb2 = self.valid_position_bomb("no aleatory two")
+        row_bomb2, column_bomb2 = self.position_bomb("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_bomb2-1][column_bomb2-1] = "#"
         self.print_show_board_two()
         time.sleep(1)
-        row_ship_two_horizontal2, column_ship_two_horizontal2 = self.valid_position_ship_two_horizontal("no aleatory two")
+        row_ship_two_horizontal2, column_ship_two_horizontal2 = self.ship_two_horizontal("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "A"
         self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "A"
         self.print_show_board_two()
         time.sleep(1)
-        row_ship_two_vertical2, column_ship_two_vertical2 = self.valid_position_ship_two_vertical("no aleatory two")
+        row_ship_two_vertical2, column_ship_two_vertical2 = self.ship_two_vertical("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "B"
         self.show_board_two[row_ship_two_vertical2][column_ship_two_vertical2-1] = "B"
         self.print_show_board_two()
         time.sleep(1)
-        row_ship_three_horizontal2, column_ship_three_horizontal2 = self. valid_position_ship_three_horizontal("no aleatory two")
+        row_ship_three_horizontal2, column_ship_three_horizontal2 = self. ship_three_horizontal("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] = "C"
@@ -765,7 +753,7 @@ class MultiPlayer(SinglePlayer):
         self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] = "C"
         self.print_show_board_two()
         time.sleep(1)
-        row_ship_three_vertical2, column_ship_three_vertical2 = self.valid_position_ship_three_vertical("no aleatory two")
+        row_ship_three_vertical2, column_ship_three_vertical2 = self.ship_three_vertical("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] = "D"
@@ -773,7 +761,7 @@ class MultiPlayer(SinglePlayer):
         self.show_board_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] = "D"
         self.print_show_board_two()
         time.sleep(1)
-        row_ship_four_horizontal2, column_ship_four_horizontal2 = self.valid_position_ship_four_horizontal("no aleatory two")
+        row_ship_four_horizontal2, column_ship_four_horizontal2 = self.ship_four_horizontal("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] = "E"
@@ -782,7 +770,7 @@ class MultiPlayer(SinglePlayer):
         self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] = "E"
         self.print_show_board_two()
         time.sleep(1)
-        row_ship_four_vertical2, column_ship_four_vertical2 = self.valid_position_ship_four_vertical("no aleatory two")
+        row_ship_four_vertical2, column_ship_four_vertical2 = self.ship_four_vertical("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] = "F"
@@ -792,8 +780,8 @@ class MultiPlayer(SinglePlayer):
         self.print_show_board_two()
         time.sleep(1.5)
         self.clear()
-#*********************************************************************************************************************
-        self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+
+        self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -802,7 +790,7 @@ class MultiPlayer(SinglePlayer):
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
 
-    def player_number_one(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+    def the_first_player(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -820,7 +808,7 @@ class MultiPlayer(SinglePlayer):
             time.sleep(1)
             print "PLAYER 1"
             self.print_board_player_two()
-            guess_row, guess_column = self.valid_guess_given_by_user()
+            guess_row, guess_column = self.alone_the_user()
             if guess_row == row_bomb2 and guess_column == column_bomb2:
                 self.board_player_two[guess_row-1][guess_column-1] = "#"
                 self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "A"
@@ -873,7 +861,7 @@ class MultiPlayer(SinglePlayer):
                     time.sleep(1)
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -886,7 +874,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_two[guess_row-1][guess_column-1] = "B"
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -900,7 +888,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_two[guess_row-1][guess_column-1] = "C"
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -914,7 +902,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_two[guess_row-1][guess_column-1] = "D"
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -929,7 +917,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_two[guess_row-1][guess_column-1] = "E"
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -944,7 +932,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_two[guess_row-1][guess_column-1] = "F"
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -956,7 +944,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_two[guess_row-1][guess_column-1] = "X"
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -987,7 +975,7 @@ class MultiPlayer(SinglePlayer):
                 time.sleep(1)
                 self.menu()
 
-    def player_number_two(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+    def the_second_player(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1005,7 +993,7 @@ class MultiPlayer(SinglePlayer):
             time.sleep(1)
             print "PLAYER 2"
             self.print_board_player_one()
-            guess_row, guess_column = self.valid_guess_given_by_user()
+            guess_row, guess_column = self.alone_the_user()
             if guess_row == row_bomb and guess_column == column_bomb:
                 self.board_player_one[guess_row-1][guess_column-1] = "#"
                 self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
@@ -1054,7 +1042,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "A"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1067,7 +1055,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "B"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1081,7 +1069,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "C"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1095,7 +1083,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "D"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1110,7 +1098,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "E"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1125,7 +1113,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "F"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1137,7 +1125,7 @@ class MultiPlayer(SinglePlayer):
                     self.board_player_one[guess_row-1][guess_column-1] = "X"
                     self.print_board_player_one()
                     raw_input("Press -ENTER- ")
-                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -1168,13 +1156,13 @@ class MultiPlayer(SinglePlayer):
                 time.sleep(1)
                 self.menu()
 
-    def menu_print(self):
+    def menu_screen(self):
         print "WELCOME TO BATTLESHIP"
         print "\n --1. SINGLE PLAYER"
         print "\n --2. TWO PLAYERS"
         print "\n --4. EXIT"
 
-    def menu_option(self):
+    def menu_available(self):
         while True:
             option_user = raw_input("\n -- ")
             if option_user == "1":
@@ -1193,8 +1181,8 @@ class MultiPlayer(SinglePlayer):
 
     def menu(self):
         self.clear()
-        self.menu_print()
-        self.menu_option()
+        self.menu_screen()
+        self.menu_available()
 
 MAIN = MultiPlayer()
 MAIN.menu()
