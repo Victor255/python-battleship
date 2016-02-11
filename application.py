@@ -1,5 +1,4 @@
-"Battleship"
-
+"BATTLESHIP"
 
 import random
 import os
@@ -31,26 +30,20 @@ class GameBattle(object):
         del self.show_board_one[:]
         del self.show_board_two[:]
 
-    def board_player_one_to_check(self):
+    def generate_board_player_one_to_check(self):
         for l in range(0, 10):
             self.board_player_one_to_check.append(["-"] * 10)
 
     def print_board_player_one_to_check(self):
-        self.clear()
-        print "Battle ship"
-        print ""
-        print " 1 2 3 4 5 6 7 8 9 10"
-        number = 1
+
         for o in self.board_player_one_to_check:
-            print "|" + "|".join(o) + "|" + str(number)
-            number+=1
+            print "|" + "|".join(o) + "|"
 
     def generate_board_player_one(self):
         for l in range(0, 10):
             self.board_player_one.append(["-"] * 10)
 
     def print_board_player_one(self):
-        print "Board player one"
         print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.board_player_one:
@@ -62,11 +55,6 @@ class GameBattle(object):
             self.board_player_two_to_check.append(["-"] * 10)
 
     def print_board_player_two_to_check(self):
-        self.clear()
-        print "Battle ship"
-        print ""
-        print " 1 2 3 4 5 6 7 8 9 10"
-        number = 1
         for o in self.board_player_one_to_check:
             print "|" + "|".join(o) + "|" + str(number)
             number+=1
@@ -76,28 +64,95 @@ class GameBattle(object):
             self.board_player_two.append(["-"] * 10)
 
     def print_board_player_two(self):
-        print "Board player two"
+
         print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.board_player_two:
             print "|" + "|".join(o) + "|" + str(number)
             number+=1
 
-    def valid_row_column(self):
+    def generate_show_board_one(self):
+        for l in range(0, 10):
+            self.show_board_one.append(["-"]*10)
+
+    def print_show_board_one(self):
+        print " 1 2 3 4 5 6 7 8 9 10"
+        number = 1
+        for o in self.show_board_one:
+            print "|" + "|".join(o) + "|" + str(number)
+            number+=1
+
+    def generate_show_board_two(self):
+        for l in range(0, 10):
+            self.show_board_two.append(["-"]*10)
+
+    def print_show_board_two(self):
+        print " 1 2 3 4 5 6 7 8 9 10"
+        number = 1
+        for o in self.show_board_two:
+            print "|" + "|".join(o) + "|" + str(number)
+            number+=1
+
+    def show_players(self, player):
+        if player == "1":
+            print """
+ ______ _____   _______ ___ ___ _______ ______      ____   
+|   __ \     |_|   _   |   |   |    ___|   __ \    |_   |  
+|    __/       |       |\     /|    ___|      <     _|  |_ 
+|___|  |_______|___|___| |___| |_______|___|__|    |______|  \n"""
+
+        elif player == "2":
+            print """
+ ______ _____   _______ ___ ___ _______ ______      ______ 
+|   __ \     |_|   _   |   |   |    ___|   __ \    |__    |
+|    __/       |       |\     /|    ___|      <    |    __|
+|___|  |_______|___|___| |___| |_______|___|__|    |______|   
+                                            \n"""
+        elif player == "1w":
+            print """
+ ______ _____   _______ ___ ___ _______ ______      ____        ________ _______ _______ 
+|   __ \     |_|   _   |   |   |    ___|   __ \    |_   |      |  |  |  |_     _|    |  |
+|    __/       |       |\     /|    ___|      <     _|  |_     |  |  |  |_|   |_|       |
+|___|  |_______|___|___| |___| |_______|___|__|    |______|    |________|_______|__|____|
+                                                                                            
+"""
+        elif player == "2w":
+            print """
+ ______ _____   _______ ___ ___ _______ ______      ______      ________ _______ _______ 
+|   __ \     |_|   _   |   |   |    ___|   __ \    |__    |    |  |  |  |_     _|    |  |
+|    __/       |       |\     /|    ___|      <    |    __|    |  |  |  |_|   |_|       |
+|___|  |_______|___|___| |___| |_______|___|__|    |______|    |________|_______|__|____|  
+                                                                       """
+        elif player == "b1":
+            print "\n   BOARD PLAYER  1"
+        elif player == "b2":
+            print "\n   BOARD PLAYER  2"
+
+    def show_board_one_or_two(self, board):
+        if board == "1":
+            self.clear()
+            self.show_players("b1")
+            self.print_show_board_one()
+        elif board == "2":
+            self.clear()
+            self.show_players("b2")
+            self.print_show_board_two()
+
+    def valid_insert_row_and_column_by_user(self):
         while True:
             try:
-                insert_row = raw_input("\nInsert row: ")
+                insert_row = raw_input("\nINSERT ROW: ")
                 insert_row = int(insert_row)
-                insert_column = raw_input("Insert column: ")
+                insert_column = raw_input("INSERT COLUMN: ")
                 insert_column = int(insert_column)
                 return insert_row, insert_column
             except ValueError:
                 self.clear()
-                print "Only can insert integer numbers"
+                print "ONLY CAN INSERT NUMBERS"
         return insert_row, insert_column
 
     def position_bomb(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
             bomb = True
@@ -111,13 +166,13 @@ class GameBattle(object):
                 elif self.board_player_one_to_check[row_bomb-1][column_bomb-1] == "*":
                     bomb = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the bomb"
+            print "\nINSERT THE COORDINATES WHERE THE BOMB WILL GO"
             bomb = True
             while bomb == True:
-                
-                row_bomb, column_bomb = self.valid_row_column()
-                if row_bomb > 10 or column_bomb > 10:
-                    print "this ship is not in the ocean"
+                row_bomb, column_bomb = self.valid_insert_row_and_column_by_user()
+                if row_bomb > 10 or row_bomb < 1 or column_bomb > 10 or row_bomb <1:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     bomb = True
                 else:
                     if self.board_player_one_to_check[row_bomb-1][column_bomb-1] == "-":
@@ -125,126 +180,145 @@ class GameBattle(object):
                         return row_bomb, column_bomb
                         break
                     elif self.board_player_one_to_check[row_bomb-1][column_bomb-1] == "*":
-                        print "\nThere is a ship in this coordinate\n"
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
                         bomb = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the bomb\n"
-            row_bomb, column_bomb = self.valid_row_column()
+            print "\nINSERT THE COORDINATES WHERE THE BOMB WILL GO"
             bomb = True
             while bomb == True:
-                if self.board_player_two_to_check[row_bomb-1][column_bomb-1] == "-":
-                    self.board_player_two_to_check[row_bomb-1][column_bomb-1] = "*"
-                    return row_bomb, column_bomb
-                    break
-                elif self.board_player_two_to_check[row_bomb-1][column_bomb-1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_bomb, column_bomb = self.valid_row_column()
+                row_bomb, column_bomb = self.valid_insert_row_and_column_by_user()
+                if row_bomb > 10 or row_bomb < 1 or column_bomb > 10 or row_bomb <1:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     bomb = True
+                else:
+                    if self.board_player_two_to_check[row_bomb-1][column_bomb-1] == "-":
+                        self.board_player_two_to_check[row_bomb-1][column_bomb-1] = "*"
+                        return row_bomb, column_bomb
+                        break
+                    elif self.board_player_two_to_check[row_bomb-1][column_bomb-1] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        row_bomb, column_bomb = self.valid_insert_row_and_column_by_user()
+                        bomb = True
 
     def ship_two_horizontal(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
-            row_ship_two_horizontal = random.randint(1,10)
-            column_ship_two_horizontal = random.randint(1,9)
             ship2 = True
             while ship2 == True:
+                row_ship_two_horizontal = random.randint(1,10)
+                column_ship_two_horizontal = random.randint(1,9)
                 if self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
                     self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "*"
                     self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] = "*"
                     return row_ship_two_horizontal, column_ship_two_horizontal
                     break
                 elif self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
-                    row_ship_two_horizontal = random.randint(1,10)
-                    column_ship_two_horizontal = random.randint(1,9)
                     ship2 = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the ship"
-            print "of two parts in horizontal orientation\n"
-            row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF TWO PARTS IN HORIZONTAL ORIENTATION\n"
             ship2 = True
             while ship2 == True:
-                if self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
-                    self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "*"
-                    self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] = "*"
-                    return row_ship_two_horizontal, column_ship_two_horizontal
-                    break
-                elif self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
+                row_ship_two_horizontal, column_ship_two_horizontal = self.valid_insert_row_and_column_by_user()
+                if row_ship_two_horizontal < 1 or row_ship_two_horizontal > 10 or column_ship_two_horizontal < 1 or column_ship_two_horizontal > 9:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship2 = True
+                else:
+                    if self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
+                        self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "*"
+                        self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] = "*"
+                        return row_ship_two_horizontal, column_ship_two_horizontal
+                        break
+                    elif self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship2 = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the ship"
-            print "of two parts in horizontal orientation\n"
-            row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF TWO PARTS IN HORIZONTAL ORIENTATION\n"
             ship2 = True
             while ship2 == True:
-                if self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
-                    self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "*"
-                    self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] = "*"
-                    return row_ship_two_horizontal, column_ship_two_horizontal
-                    break
-                elif self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_two_horizontal, column_ship_two_horizontal = self.valid_row_column()
+                row_ship_two_horizontal, column_ship_two_horizontal = self.valid_insert_row_and_column_by_user()
+                if row_ship_two_horizontal < 1 or row_ship_two_horizontal > 10 or column_ship_two_horizontal < 1 or column_ship_two_horizontal > 9:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship2 = True
+                else:
+                    if self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "-":
+                        self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "*"
+                        self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] = "*"
+                        return row_ship_two_horizontal, column_ship_two_horizontal
+                        break
+                    elif self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_two_horizontal-1][column_ship_two_horizontal] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship2 = True
 
     def ship_two_vertical(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
-            row_ship_two_vertical = random.randint(1,9)
-            column_ship_two_vertical = random.randint(1,10)
             ship2 = True
             while ship2 == True:
-                if self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical] == "-":
+                row_ship_two_vertical = random.randint(1,9)
+                column_ship_two_vertical = random.randint(1,10)
+                if self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "-":
                     self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] = "*"
                     self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] = "*"
                     return row_ship_two_vertical, column_ship_two_vertical
                     break
                 elif self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
-                    row_ship_two_vertical = random.randint(1,9)
-                    column_ship_two_vertical = random.randint(1,10)
                     ship2 = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the ship"
-            print "of two parts in vertical orientation\n"
-            row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF TWO PARTS IN VERTICAL ORIENTATION\n"
             ship2 = True
             while ship2 == True:
-                if self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical] == "-":
-                    self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] = "*"
-                    self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] = "*"
-                    return row_ship_two_vertical, column_ship_two_vertical
-                    break
-                elif self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
+                row_ship_two_vertical, column_ship_two_vertical = self.valid_insert_row_and_column_by_user()
+                if row_ship_two_vertical < 1 or row_ship_two_vertical > 9 or column_ship_two_vertical < 1 or column_ship_two_vertical > 10:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship2 = True
+                else:
+                    if self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "-":
+                        self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] = "*"
+                        self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] = "*"
+                        return row_ship_two_vertical, column_ship_two_vertical
+                        break
+                    elif self.board_player_one_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship2 = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the ship"
-            print "of two parts in vertical orientation\n"
-            row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF TWO PARTS IN VERTICAL ORIENTATION\n"
             ship2 = True
             while ship2 == True:
-                if self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical] == "-":
-                    self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] = "*"
-                    self.board_player_two_to_check[row_ship_two_vertical][column_ship_two_vertical-1] = "*"
-                    return row_ship_two_vertical, column_ship_two_vertical
-                    break
-                elif self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
-                    print "\nThereThere is a ship in this coordinate\n"
-                    row_ship_two_vertical, column_ship_two_vertical = self.valid_row_column()
+                row_ship_two_vertical, column_ship_two_vertical = self.valid_insert_row_and_column_by_user()
+                if row_ship_two_vertical < 1 or row_ship_two_vertical > 9 or column_ship_two_vertical < 1 or column_ship_two_vertical > 10:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship2 = True
+                else:
+                    if self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "-" and self.board_player_two_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "-":
+                        self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] = "*"
+                        self.board_player_two_to_check[row_ship_two_vertical][column_ship_two_vertical-1] = "*"
+                        return row_ship_two_vertical, column_ship_two_vertical
+                        break
+                    elif self.board_player_two_to_check[row_ship_two_vertical-1][column_ship_two_vertical-1] == "*" or self.board_player_one_to_check[row_ship_two_vertical][column_ship_two_vertical-1] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship2 = True
 
     def ship_three_horizontal(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
-            row_ship_three_horizontal = random.randint(1,10)
-            column_ship_three_horizontal = random.randint(1,8)
             ship3 = True
             while ship3 == True:
+                row_ship_three_horizontal = random.randint(1,10)
+                column_ship_three_horizontal = random.randint(1,8)
                 if self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
                 and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "-":
                     self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "*"
@@ -254,54 +328,60 @@ class GameBattle(object):
                     break
                 elif self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
                 or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
-                    row_ship_three_horizontal = random.randint(1,10)
-                    column_ship_three_horizontal = random.randint(1,8)
                     ship3 = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the ship"
-            print "of three parts in horizontal orientation\n"
-            row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF THREE PARTS IN HORIZONTAL ORIENTATION\n"
             ship3 = True
             while ship3 == True:
-                if self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
-                and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "-":
-                    self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "*"
-                    self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] = "*"
-                    self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "*"
-                    return row_ship_three_horizontal, column_ship_three_horizontal
-                    break
-                elif self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
-                or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
+                row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
+                if row_ship_three_horizontal < 1 or row_ship_three_horizontal > 10 or column_ship_three_horizontal < 1 or column_ship_three_horizontal > 8:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
+                else:
+                    if self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
+                    and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "-":
+                        self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "*"
+                        self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] = "*"
+                        self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "*"
+                        return row_ship_three_horizontal, column_ship_three_horizontal
+                        break
+                    elif self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
+                    or self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship3 = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the ship"
-            print "of three parts in horizontal orientation\n"
-            row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF THREE PARTS IN HORIZONTAL ORIENTATION\n"
             ship3 = True
             while ship3 == True:
-                if self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
-                and self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "-":
-                    self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "*"
-                    self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] = "*"
-                    self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "*"
-                    return row_ship_three_horizontal, column_ship_three_horizontal
-                    break
-                elif self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
-                or self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_horizontal, column_ship_three_horizontal = self.valid_row_column()
+                row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
+                if row_ship_three_horizontal < 1 or row_ship_three_horizontal > 10 or column_ship_three_horizontal < 1 or column_ship_three_horizontal > 8:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
+                else:
+                    if self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
+                    and self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "-":
+                        self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "*"
+                        self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] = "*"
+                        self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "*"
+                        return row_ship_three_horizontal, column_ship_three_horizontal
+                        break
+                    elif self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "*"\
+                    or self.board_player_two_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship3 = True
 
     def ship_three_vertical(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
-            row_ship_three_vertical = random.randint(1,8)
-            column_ship_three_vertical = random.randint(1,10)
             ship3 = True
             while ship3 == True:
+                row_ship_three_vertical = random.randint(1,8)
+                column_ship_three_vertical = random.randint(1,10)
                 if self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
                 and self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "-":
                     self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] = "*"
@@ -311,54 +391,60 @@ class GameBattle(object):
                     break
                 elif self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
                 or self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
-                    row_ship_three_vertical = random.randint(1,8)
-                    column_ship_three_vertical = random.randint(1,10)
                     ship3 = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the ship"
-            print "of three parts in vertical orientation\n"
-            row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF THREE PARTS IN VERTICAL ORIENTATION\n"
             ship3 = True
             while ship3 == True:
-                if self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
-                and self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "-":
-                    self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] = "*"
-                    self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] = "*"
-                    self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] = "*"
-                    return row_ship_three_vertical, column_ship_three_vertical
-                    break
-                elif self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
-                or self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
+                row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
+                if row_ship_three_vertical < 1 or row_ship_three_vertical > 8 or column_ship_three_vertical < 1 or column_ship_three_vertical > 10:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
+                else:
+                    if self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
+                    and self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "-":
+                        self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] = "*"
+                        self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] = "*"
+                        self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] = "*"
+                        return row_ship_three_vertical, column_ship_three_vertical
+                        break
+                    elif self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
+                    or self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship3 = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the ship"
-            print "of three parts in vertical orientation\n"
-            row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF THREE PARTS IN VERTICAL ORIENTATION\n"
             ship3 = True
             while ship3 == True:
-                if self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
-                and self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "-":
-                    self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] = "*"
-                    self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] = "*"
-                    self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] = "*"
-                    return row_ship_three_vertical, column_ship_three_vertical
-                    break
-                elif self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
-                or self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_three_vertical, column_ship_three_vertical = self.valid_row_column()
+                row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
+                if row_ship_three_vertical < 1 or row_ship_three_vertical > 8 or column_ship_three_vertical < 1 or column_ship_three_vertical > 10:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
+                else:
+                    if self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
+                    and self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "-":
+                        self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] = "*"
+                        self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] = "*"
+                        self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] = "*"
+                        return row_ship_three_vertical, column_ship_three_vertical
+                        break
+                    elif self.board_player_two_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "*" or self.board_player_two_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "*"\
+                    or self.board_player_two_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship3 = True
 
     def ship_four_horizontal(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
-            row_ship_four_horizontal = random.randint(1,10)
-            column_ship_four_horizontal = random.randint(1,7)
             ship4 = True
             while ship4 == True:
+                row_ship_four_horizontal = random.randint(1,10)
+                column_ship_four_horizontal = random.randint(1,7)
                 if self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
                 and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "-":
                     self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "*"
@@ -369,56 +455,62 @@ class GameBattle(object):
                     break
                 elif self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
                 or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
-                    row_ship_four_horizontal = random.randint(1,10)
-                    column_ship_four_horizontal = random.randint(1,7)
                     ship4 = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the ship"
-            print "of four parts in horizontal orientation\n"
-            row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF FOUR PARTS IN HORIZONTAL ORIENTATION\n"
             ship4 = True
             while ship4 == True:
-                if self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
-                and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "-":
-                    self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "*"
-                    self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] = "*"
-                    self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "*"
-                    self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "*" 
-                    return row_ship_four_horizontal, column_ship_four_horizontal
-                    break
-                elif self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
-                or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
+                row_ship_four_horizontal, column_ship_four_horizontal = self.valid_insert_row_and_column_by_user()
+                if row_ship_four_horizontal < 1 or row_ship_four_horizontal > 10 or  column_ship_four_horizontal < 1 or column_ship_four_horizontal > 7:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship4 = True
+                else:
+                    if self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
+                    and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "-":
+                        self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "*"
+                        self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] = "*"
+                        self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "*"
+                        self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "*" 
+                        return row_ship_four_horizontal, column_ship_four_horizontal
+                        break
+                    elif self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
+                    or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship4 = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the ship"
-            print "of four parts in horizontal orientation\n"
-            row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF FOUR PARTS IN HORIZONTRAL ORIENTATION\n"
             ship4 = True
             while ship4 == True:
-                if self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
-                and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "-" and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "-":
-                    self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "*"
-                    self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] = "*"
-                    self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "*"
-                    self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "*" 
-                    return row_ship_four_horizontal, column_ship_four_horizontal
-                    break
-                elif self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
-                or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_horizontal, column_ship_four_horizontal = self.valid_row_column()
+                row_ship_four_horizontal, column_ship_four_horizontal = self.valid_insert_row_and_column_by_user()
+                if row_ship_four_horizontal < 1 or row_ship_four_horizontal > 10 or  column_ship_four_horizontal < 1 or column_ship_four_horizontal > 7:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship4 = True
+                else:
+                    if self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
+                    and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "-" and self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "-":
+                        self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "*"
+                        self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] = "*"
+                        self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "*"
+                        self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "*" 
+                        return row_ship_four_horizontal, column_ship_four_horizontal
+                        break
+                    elif self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
+                    or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "*" or self.board_player_two_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship4 = True
 
     def ship_four_vertical(self, aleatory_or_no):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_two_to_check()
         if aleatory_or_no == "aleatory":
-            row_ship_four_vertical = random.randint(1,7)
-            column_ship_four_vertical = random.randint(1,10)
             ship4 = True
             while ship4 == True:
+                row_ship_four_vertical = random.randint(1,7)
+                column_ship_four_vertical = random.randint(1,10)
                 if self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
                 and self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "-":
                     self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] = "*"
@@ -429,64 +521,70 @@ class GameBattle(object):
                     break
                 elif self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
                 or self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
-                    row_ship_four_vertical = random.randint(1,7)
-                    column_ship_four_vertical = random.randint(1,10)
                     ship4 = True
         elif aleatory_or_no == "no aleatory one":
-            print "Insert your coordinates to put the ship"
-            print "of four parts in vertical orientation\n"
-            row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF FOUR PARTS IN VERTICAL ORIENTATION\n"
             ship4 = True
             while ship4 == True:
-                if self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
-                and self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "-":
-                    self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] = "*"
-                    self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] = "*"
-                    self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] = "*"
-                    self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] = "*"
-                    return row_ship_four_vertical, column_ship_four_vertical
-                    break
-                elif self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
-                or self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
+                row_ship_four_vertical, column_ship_four_vertical = self.valid_insert_row_and_column_by_user()
+                if row_ship_four_vertical < 1 or row_ship_four_vertical > 7 or column_ship_four_vertical < 1 or column_ship_four_vertical > 10:
+                    self.show_board_one_or_two("1")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship4 = True
+                else:
+                    if self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
+                    and self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "-" and self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "-":
+                        self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] = "*"
+                        self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] = "*"
+                        self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] = "*"
+                        self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] = "*"
+                        return row_ship_four_vertical, column_ship_four_vertical
+                        break
+                    elif self.board_player_one_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
+                    or self.board_player_one_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_one_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
+                        self.show_board_one_or_two("1")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship4 = True
         elif aleatory_or_no == "no aleatory two":
-            print "Insert your coordinates to put the ship"
-            print "of four parts in vertical orientation\n"
-            row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
+            print "\nINSERT YOUR COORDINATES TO PUT THE SHIP OF FOUR PARTS IN VERTICAL ORIENTATION\n"
             ship4 = True
             while ship4 == True:
-                if self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
-                and self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "-" and self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "-":
-                    self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] = "*"
-                    self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] = "*"
-                    self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] = "*"
-                    self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] = "*"
-                    return row_ship_four_vertical, column_ship_four_vertical
-                    break
-                elif self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
-                or self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
-                    print "\nThere is a ship in this coordinate\n"
-                    row_ship_four_vertical, column_ship_four_vertical = self.valid_row_column()
+                row_ship_four_vertical, column_ship_four_vertical = self.valid_insert_row_and_column_by_user()
+                if row_ship_four_vertical < 1 or row_ship_four_vertical > 7 or column_ship_four_vertical < 1 or column_ship_four_vertical > 10:
+                    self.show_board_one_or_two("2")
+                    print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship4 = True
+                else:
+                    if self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "-" and self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "-"\
+                    and self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "-" and self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "-":
+                        self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] = "*"
+                        self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] = "*"
+                        self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] = "*"
+                        self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] = "*"
+                        return row_ship_four_vertical, column_ship_four_vertical
+                        break
+                    elif self.board_player_two_to_check[row_ship_four_vertical-1][column_ship_four_vertical-1] == "*" or self.board_player_two_to_check[row_ship_four_vertical][column_ship_four_vertical-1] == "*"\
+                    or self.board_player_two_to_check[row_ship_four_vertical+1][column_ship_four_vertical-1] == "*" or self.board_player_two_to_check[row_ship_four_vertical+2][column_ship_four_vertical-1] == "*":
+                        self.show_board_one_or_two("2")
+                        print "\nTHERE IS A SHIP IN THIS COORDINATE\n"
+                        ship4 = True
 
 class SinglePlayer(GameBattle):
     def alone_the_user(self):
         while True:
             try:
-                guess_row = raw_input("\nGuess the row: ")
-                guess_row = int(guess_row)
-                guess_column = raw_input("Guess the column: ")
-                guess_column = int(guess_column)
-                return guess_row, guess_column
+                row = raw_input("\nGUESS THE ROW: ")
+                row = int(row)
+                column = raw_input("GUESS THE COLUMN: ")
+                column = int(column)
+                return row, column
             except ValueError:
                 self.clear()
-                print "Only can insert integer numbers"
-        return guess_row, guess_column
+                print "ONLY CAN INSERT NUMBERS"
+        return row, column
 
     def player_alone(self):
-        self.board_player_one_to_check()
+        self.generate_board_player_one_to_check()
         self.generate_board_player_one()
         row_bomb, column_bomb = self.position_bomb("aleatory")
         row_ship_two_horizontal, column_ship_two_horizontal = self.ship_two_horizontal("aleatory")
@@ -497,13 +595,26 @@ class SinglePlayer(GameBattle):
         row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("aleatory")
         print "bomb"
         print row_bomb, column_bomb
-        time.sleep(1)
-        self.print_board_player_one()
+        """print "\nship of two h"
+        print row_ship_two_horizontal, column_ship_two_horizontal
+        print "\nship of two v"
+        print row_ship_two_vertical, column_ship_two_vertical
+        print "\nship of three h"
+        print row_ship_three_horizontal, column_ship_three_horizontal
+        print "\nship of three v"
+        print row_ship_three_vertical, column_ship_three_vertical
+        print "\nship of four h"
+        print row_ship_four_horizontal, column_ship_four_horizontal
+        print "\nship of four v"
+        print row_ship_four_vertical, column_ship_four_vertical"""
+        self.clear()
         life = 0
-        while life <= 10:
-            guess_row, guess_column = self.alone_the_user()
-            if guess_row == row_bomb and guess_column == column_bomb:
-                self.board_player_one[guess_row-1][guess_column-1] = "#"
+        while life <= 13:
+            self.show_players("1")
+            self.print_board_player_one()
+            row, column = self.alone_the_user()
+            if row == row_bomb and column == column_bomb:
+                self.board_player_one[row-1][column-1] = "#"
                 self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
                 self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
                 self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
@@ -522,73 +633,73 @@ class SinglePlayer(GameBattle):
                 self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] = "F"
                 self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "F"
                 self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "F"
+                self.clear()
+                print "CONGRATULATIONS YOU SHOT TO THE BOMB, THE SHIPS HAVE SUNK\n"
+                self.show_players("1w")
                 self.print_board_player_one()
-                time.sleep(1)
-                print "You have shot to the bomb, and You have sunk all the ships"
-                print "Lives: %d" % (10-life)
-                print "\nYou win\n"
-                raw_input("Press -ENTER-")
+                raw_input("\nPress -ENTER-")
+                self.clean_lists()
                 self.clear()
                 self.play_again_alone()
             else:
-                if (guess_row < 1 or guess_row > 10) or (guess_column < 1 or guess_column > 10):
-                    self.print_board_player_one()
-                    time.sleep(1)
-                    print "It is not in the ocean\n\n"
+                if (row < 1 or row > 13) or (column < 1 or column > 13):
+                    self.clear()
+                    print "IT IS NOT IN THE OCEAN\n\n"
                     life +=1
-                    print "You still have %d lives, Come on, you can sink the ships" % (10-life)
-                elif self.board_player_one[guess_row-1][guess_column-1] == "X" or self.board_player_one[guess_row-1][guess_column-1] == "A"\
-                or self.board_player_one[guess_row-1][guess_column-1] == "B" or self.board_player_one[guess_row-1][guess_column-1] == "C"\
-                or self.board_player_one[guess_row-1][guess_column-1] == "D" or self.board_player_one[guess_row-1][guess_column-1] == "E"\
-                or self.board_player_one[guess_row-1][guess_column-1] == "F":
-                    self.print_board_player_one()
-                    time.sleep(1)
-                    print "Already You have written those coordinates\n\n"
+                    print "You still have %d lives, Come on, you can sink the ships" % (13-life)
+
+                elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "A"\
+                or self.board_player_one[row-1][column-1] == "B" or self.board_player_one[row-1][column-1] == "C"\
+                or self.board_player_one[row-1][column-1] == "D" or self.board_player_one[row-1][column-1] == "E"\
+                or self.board_player_one[row-1][column-1] == "F":
+                    self.clear()
+                    print "Already You have written those coordinates\n"
                     life +=1
-                    print "You still have %d lives, Come on, you can sink the ships" % (10-life)
-                elif guess_row == row_ship_two_horizontal and guess_column == column_ship_two_horizontal\
-                or guess_row == row_ship_two_horizontal and guess_column == column_ship_two_horizontal+1:
-                    self.board_player_one[guess_row-1][guess_column-1] = "A"
-                    self.print_board_player_one()
-                    time.sleep(1)
-                elif guess_row == row_ship_two_vertical and guess_column == column_ship_two_vertical\
-                or guess_row == row_ship_two_vertical+1 and guess_column == column_ship_two_vertical:
-                    self.board_player_one[guess_row-1][guess_column-1] = "B"
-                    self.print_board_player_one()
-                    time.sleep(1)
-                elif guess_row == row_ship_three_horizontal and guess_column == column_ship_three_horizontal\
-                or guess_row == row_ship_three_horizontal and guess_column == column_ship_three_horizontal+1\
-                or guess_row == row_ship_three_horizontal and guess_column == column_ship_three_horizontal+2:
-                    self.board_player_one[guess_row-1][guess_column-1] = "C"
-                    self.print_board_player_one()
-                    time.sleep(1)
-                elif guess_row == row_ship_three_vertical and guess_column == column_ship_three_vertical\
-                or guess_row == row_ship_three_vertical+1 and guess_column == column_ship_three_vertical\
-                or guess_row == row_ship_three_vertical+2 and guess_column == column_ship_three_vertical:
-                    self.board_player_one[guess_row-1][guess_column-1] = "D"
-                    self.print_board_player_one()
-                    time.sleep(1)
-                elif guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal\
-                or guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal+1\
-                or guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal+2\
-                or guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal+3:
-                    self.board_player_one[guess_row-1][guess_column-1] = "E"
-                    self.print_board_player_one()
-                    time.sleep(1)
-                elif guess_row == row_ship_four_vertical and guess_column == column_ship_four_vertical\
-                or guess_row == row_ship_four_vertical+1 and guess_column == column_ship_four_vertical\
-                or guess_row == row_ship_four_vertical+2 and guess_column == column_ship_four_vertical\
-                or guess_row == row_ship_four_vertical+3 and guess_column == column_ship_four_vertical:
-                    self.board_player_one[guess_row-1][guess_column-1] = "F"
-                    self.print_board_player_one()
-                    time.sleep(1)
+                    print "You still have %d lives, Come on, you can sink the ships" % (13-life)
+
+                elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
+                or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
+                    self.board_player_one[row-1][column-1] = "A"
+                    self.clear()
+
+                elif row == row_ship_two_vertical and column == column_ship_two_vertical\
+                or row == row_ship_two_vertical+1 and column == column_ship_two_vertical:
+                    self.board_player_one[row-1][column-1] = "B"
+                    self.clear()
+
+                elif row == row_ship_three_horizontal and column == column_ship_three_horizontal\
+                or row == row_ship_three_horizontal and column == column_ship_three_horizontal+1\
+                or row == row_ship_three_horizontal and column == column_ship_three_horizontal+2:
+                    self.board_player_one[row-1][column-1] = "C"
+                    self.clear()
+
+                elif row == row_ship_three_vertical and column == column_ship_three_vertical\
+                or row == row_ship_three_vertical+1 and column == column_ship_three_vertical\
+                or row == row_ship_three_vertical+2 and column == column_ship_three_vertical:
+                    self.board_player_one[row-1][column-1] = "D"
+                    self.clear()
+
+                elif row == row_ship_four_horizontal and column == column_ship_four_horizontal\
+                or row == row_ship_four_horizontal and column == column_ship_four_horizontal+1\
+                or row == row_ship_four_horizontal and column == column_ship_four_horizontal+2\
+                or row == row_ship_four_horizontal and column == column_ship_four_horizontal+3:
+                    self.board_player_one[row-1][column-1] = "E"
+                    self.clear()
+
+                elif row == row_ship_four_vertical and column == column_ship_four_vertical\
+                or row == row_ship_four_vertical+1 and column == column_ship_four_vertical\
+                or row == row_ship_four_vertical+2 and column == column_ship_four_vertical\
+                or row == row_ship_four_vertical+3 and column == column_ship_four_vertical:
+                    self.board_player_one[row-1][column-1] = "F"
+                    self.clear()
+
                 else:
-                    self.board_player_one[guess_row-1][guess_column-1] = "X"
-                    self.print_board_player_one()
-                    time.sleep(1)
+                    self.board_player_one[row-1][column-1] = "X"
+                    self.clear()
                     print "Try again\n"
                     life+=1
-                    print "You still have %d lives, Come on, you can sink the ships\n" % (10-life)
+                    print "You still have %d lives, Come on, you can sink the ships\n" % (13-life)
+
             if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "A" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
             and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "B" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
             and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "C" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
@@ -598,169 +709,156 @@ class SinglePlayer(GameBattle):
             and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
             and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
             and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
-                self.print_board_player_one()
+                self.clear()
                 time.sleep(1)
-                print "\nYou win\n"
+                print "You have sunk all the ships\n"
+                self.show_players("1w")
+                self.print_board_player_one()
+                raw_input("Press -ENTER-")
+                self.clean_lists()
+                self.clear()
+                self.play_again_alone()
+
+            if life == 13:
+                self.clear()
+                print """
+ ___ ___ _______ _______      _____   _______ _______ _______ 
+|   |   |       |   |   |    |     |_|       |     __|    ___|
+ \     /|   -   |   |   |    |       |   -   |__     |    ___|
+  |___| |_______|_______|    |_______|_______|_______|_______|
+                                      """
                 raw_input("Press -ENTER- ")
                 self.clear()
                 self.play_again_alone()
-            if life == 10:
-                self.print_board_player_one()
-                time.sleep(1)
-                print "\nYou LOSE\n"
-                raw_input("Press -ENTER- ")
-                self.clear()
-                self.play_again_alone()
+
     def play_again_alone(self):
         while True:
-            time.sleep(1)
-            option_user = raw_input("Do you want to play again y/n:  ")
+            option_user = raw_input("DO YOU WANT TO PLAY AGAIN y/n:  ")
             option_user = option_user.lower()
             if option_user == "y":
                 self.clean_lists()
                 self.clear()
-                time.sleep(1)
                 self.player_alone()
             elif option_user == "n":
                 self.clean_lists()
-                time.sleep(1)
                 self.clear()
                 self.menu()
             else:
                 self.clear()
-                time.sleep(1)
-                print "Only can write -y- or -n- \n"
+                print "ONLY CAN WRITE y/n \n"
 
 class MultiPlayer(SinglePlayer):
-    def generate_show_board_one(self):
-        for l in range(0, 10):
-            self.show_board_one.append(["-"]*10)
-
-    def print_show_board_one(self):
-        print "board player one"
-        print " 1 2 3 4 5 6 7 8 9 10"
-        number = 1
-        for o in self.show_board_one:
-            print "|" + "|".join(o) + "|" + str(number)
-            number+=1
-
-    def generate_show_board_two(self):
-        for l in range(0, 10):
-            self.show_board_two.append(["-"]*10)
-
-    def print_show_board_two(self):
-        print "Board player two"
-        print " 1 2 3 4 5 6 7 8 9 10"
-        number = 1
-        for o in self.show_board_two:
-            print "|" + "|".join(o) + "|" + str(number)
-            number+=1
-
     def place_ships_players(self):
         self.generate_board_player_one()
         self.generate_show_board_one()
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_bomb, column_bomb = self.position_bomb("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_bomb-1][column_bomb-1] = "#"
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_ship_two_horizontal, column_ship_two_horizontal = self.ship_two_horizontal("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
         self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_ship_two_vertical, column_ship_two_vertical = self.ship_two_vertical("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
         self.show_board_one[row_ship_two_vertical][column_ship_two_vertical-1] = "B"
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_ship_three_horizontal, column_ship_three_horizontal = self. ship_three_horizontal("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "C"
         self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "C"
         self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "C"
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_ship_three_vertical, column_ship_three_vertical = self.ship_three_vertical("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "D"
         self.show_board_one[row_ship_three_vertical][column_ship_three_vertical-1] = "D"
         self.show_board_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "D"
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_ship_four_horizontal, column_ship_four_horizontal = self.ship_four_horizontal("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "E"
         self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "E"
         self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "E"
         self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "E"
+        self.show_players("b1")
         self.print_show_board_one()
-        time.sleep(1)
         row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("no aleatory one")
         self.clear()
-        time.sleep(0)
         self.show_board_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "F"
         self.show_board_one[row_ship_four_vertical][column_ship_four_vertical-1] = "F"
         self.show_board_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "F"
         self.show_board_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "F"
+        self.show_players("b1")
         self.print_show_board_one()
-        
-        time.sleep(1)
         self.clear()
+
         print "Now the player two must put his ships\n"
         raw_input("Press -ENTER-")
-        time.sleep(1)
         self.clear()
+
         self.generate_board_player_two()
         self.generate_show_board_two()
+
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_bomb2, column_bomb2 = self.position_bomb("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_bomb2-1][column_bomb2-1] = "#"
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_ship_two_horizontal2, column_ship_two_horizontal2 = self.ship_two_horizontal("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "A"
         self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "A"
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_ship_two_vertical2, column_ship_two_vertical2 = self.ship_two_vertical("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "B"
         self.show_board_two[row_ship_two_vertical2][column_ship_two_vertical2-1] = "B"
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_ship_three_horizontal2, column_ship_three_horizontal2 = self. ship_three_horizontal("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] = "C"
         self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] = "C"
         self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] = "C"
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_ship_three_vertical2, column_ship_three_vertical2 = self.ship_three_vertical("no aleatory two")
         self.clear()
         time.sleep(0)
         self.show_board_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] = "D"
         self.show_board_two[row_ship_three_vertical2][column_ship_three_vertical2-1] = "D"
         self.show_board_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] = "D"
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_ship_four_horizontal2, column_ship_four_horizontal2 = self.ship_four_horizontal("no aleatory two")
         self.clear()
         time.sleep(0)
@@ -768,8 +866,10 @@ class MultiPlayer(SinglePlayer):
         self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] = "E"
         self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] = "E"
         self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] = "E"
+        self.show_players("b2")
         self.print_show_board_two()
         time.sleep(1)
+
         row_ship_four_vertical2, column_ship_four_vertical2 = self.ship_four_vertical("no aleatory two")
         self.clear()
         time.sleep(0)
@@ -777,11 +877,10 @@ class MultiPlayer(SinglePlayer):
         self.show_board_two[row_ship_four_vertical2][column_ship_four_vertical2-1] = "F"
         self.show_board_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] = "F"
         self.show_board_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] = "F"
+        self.show_players("b2")
         self.print_show_board_two()
-        time.sleep(1.5)
-        self.clear()
 
-        self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -790,7 +889,8 @@ class MultiPlayer(SinglePlayer):
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
 
-    def the_first_player(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+
+    def player_number_one(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -798,19 +898,56 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2):
-        self.clear()
-        time.sleep(1)
-        self.print_board_player_one()
-        time.sleep(1.6)
-        self.clear()
-        while True:
+
+        if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "A" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
+            and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "B" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
+            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "C" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
+            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "C" and self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] == "D"\
+            and self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] == "D" and self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] == "D"\
+            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] == "E"\
+            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
+            and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
+            and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
             self.clear()
             time.sleep(1)
-            print "PLAYER 1"
+            self.show_players("2w")
+            self.print_board_player_one()
+            raw_input("\nPress -ENTER- ")
+            self.clean_lists()
+            self.clear()
+            time.sleep(1)
+            self.multi_play_again()
+
+        else:
+            self.clear()
+            time.sleep(1)
+            pass
+
+        print "... Your turn. PLAYER 1 ..."
+
+        ask = raw_input("\nDo you want to see your board?  y/n  ")
+        ask = ask.lower()
+        self.clear()
+        time.sleep(1)
+
+        if ask == "y":
+            print "\nHere you will see the shots of PLAYER 2\n"
+            self.print_board_player_one()
+            raw_input("Press -ENTER- ")
+            self.clear()
+            time.sleep(1)
+        else:
+            self.clear()
+            time.sleep(1)
+            pass
+
+        while True:
+            self.show_players("1")
             self.print_board_player_two()
-            guess_row, guess_column = self.alone_the_user()
-            if guess_row == row_bomb2 and guess_column == column_bomb2:
-                self.board_player_two[guess_row-1][guess_column-1] = "#"
+            row, column = self.alone_the_user()
+
+            if row == row_bomb2 and column == column_bomb2:
+                self.board_player_two[row-1][column-1] = "#"
                 self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "A"
                 self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "A"
                 self.board_player_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "B"
@@ -829,39 +966,41 @@ class MultiPlayer(SinglePlayer):
                 self.board_player_two[row_ship_four_vertical2][column_ship_four_vertical2-1] = "F"
                 self.board_player_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] = "F"
                 self.board_player_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] = "F"
+                self.clear()
+                time.sleep(1)
+                print "CONGRATULATIONS YOU SHOT TO THE BOMB, THE SHIPS HAVE SUNK\n"
+                self.show_players("1w")
                 self.print_board_player_two()
-                print "You have shot to the bomb, and You have sunk all the ships\n"
-                print """
-    ____  __    _____  ____________     ___     _       _______   __
-   / __ \/ /   /   \ \/ / ____/ __ \   <  /    | |     / /  _/ | / /
-  / /_/ / /   / /| |\  / __/ / /_/ /   / /     | | /| / // //  |/ / 
- / ____/ /___/ ___ |/ / /___/ _, _/   / /      | |/ |/ // // /|  /  
-/_/   /_____/_/  |_/_/_____/_/ |_|   /_/       |__/|__/___/_/ |_/   
-"""
                 raw_input("Press -ENTER-")
-                
                 self.clean_lists()
                 self.clear()
                 time.sleep(1)
-                self.menu()
-                
+                self.multi_play_again()
+
             else:
-                if (guess_row < 1 or guess_row > 10) or (guess_column < 1 or guess_column > 10):
-                    self.print_board_player_two()
-                    print "It is not in the ocean\n\n"
-                elif self.board_player_two[guess_row-1][guess_column-1] == "X" or self.board_player_two[guess_row-1][guess_column-1] == "A"\
-                or self.board_player_two[guess_row-1][guess_column-1] == "B" or self.board_player_two[guess_row-1][guess_column-1] == "C"\
-                or self.board_player_two[guess_row-1][guess_column-1] == "D" or self.board_player_two[guess_row-1][guess_column-1] == "E"\
-                or self.board_player_two[guess_row-1][guess_column-1] == "F":
-                    print "Already You have written those coordinates\n\n"
-                elif guess_row == row_ship_two_horizontal2 and guess_column == column_ship_two_horizontal2\
-                or guess_row == row_ship_two_horizontal2 and guess_column == column_ship_two_horizontal2+1:
-                    self.board_player_two[guess_row-1][guess_column-1] = "A"
+                if (row < 1 or row > 10) or (column < 1 or column > 10):
                     self.clear()
                     time.sleep(1)
+                    print "IT IS NOT IN THE OCEAN\n\n"
+
+                elif self.board_player_two[row-1][column-1] == "X" or self.board_player_two[row-1][column-1] == "A"\
+                or self.board_player_two[row-1][column-1] == "B" or self.board_player_two[row-1][column-1] == "C"\
+                or self.board_player_two[row-1][column-1] == "D" or self.board_player_two[row-1][column-1] == "E"\
+                or self.board_player_two[row-1][column-1] == "F":
+                    self.clear()
+                    time.sleep(1)
+                    print "Already You have written those coordinates\n"
+
+                elif row == row_ship_two_horizontal2 and column == column_ship_two_horizontal2\
+                or row == row_ship_two_horizontal2 and column == column_ship_two_horizontal2+1:
+                    self.board_player_two[row-1][column-1] = "A"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -869,12 +1008,17 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_two_vertical2 and guess_column == column_ship_two_vertical2\
-                or guess_row == row_ship_two_vertical2+1 and guess_column == column_ship_two_vertical2:
-                    self.board_player_two[guess_row-1][guess_column-1] = "B"
+
+                elif row == row_ship_two_vertical2 and column == column_ship_two_vertical2\
+                or row == row_ship_two_vertical2+1 and column == column_ship_two_vertical2:
+                    self.board_player_two[row-1][column-1] = "B"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -882,13 +1026,18 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_three_horizontal2 and guess_column == column_ship_three_horizontal2\
-                or guess_row == row_ship_three_horizontal2 and guess_column == column_ship_three_horizontal2+1\
-                or guess_row == row_ship_three_horizontal2 and guess_column == column_ship_three_horizontal2+2:
-                    self.board_player_two[guess_row-1][guess_column-1] = "C"
+
+                elif row == row_ship_three_horizontal2 and column == column_ship_three_horizontal2\
+                or row == row_ship_three_horizontal2 and column == column_ship_three_horizontal2+1\
+                or row == row_ship_three_horizontal2 and column == column_ship_three_horizontal2+2:
+                    self.board_player_two[row-1][column-1] = "C"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -896,13 +1045,18 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_three_vertical2 and guess_column == column_ship_three_vertical2\
-                or guess_row == row_ship_three_vertical2+1 and guess_column == column_ship_three_vertical2\
-                or guess_row == row_ship_three_vertical2+2 and guess_column == column_ship_three_vertical2:
-                    self.board_player_two[guess_row-1][guess_column-1] = "D"
+
+                elif row == row_ship_three_vertical2 and column == column_ship_three_vertical2\
+                or row == row_ship_three_vertical2+1 and column == column_ship_three_vertical2\
+                or row == row_ship_three_vertical2+2 and column == column_ship_three_vertical2:
+                    self.board_player_two[row-1][column-1] = "D"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -910,14 +1064,19 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_four_horizontal2 and guess_column == column_ship_four_horizontal2\
-                or guess_row == row_ship_four_horizontal2 and guess_column == column_ship_four_horizontal2+1\
-                or guess_row == row_ship_four_horizontal2 and guess_column == column_ship_four_horizontal2+2\
-                or guess_row == row_ship_four_horizontal2 and guess_column == column_ship_four_horizontal2+3:
-                    self.board_player_two[guess_row-1][guess_column-1] = "E"
+
+                elif row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2\
+                or row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2+1\
+                or row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2+2\
+                or row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2+3:
+                    self.board_player_two[row-1][column-1] = "E"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -925,14 +1084,19 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_four_vertical2 and guess_column == column_ship_four_vertical2\
-                or guess_row == row_ship_four_vertical2+1 and guess_column == column_ship_four_vertical2\
-                or guess_row == row_ship_four_vertical2+2 and guess_column == column_ship_four_vertical2\
-                or guess_row == row_ship_four_vertical2+3 and guess_column == column_ship_four_vertical2:
-                    self.board_player_two[guess_row-1][guess_column-1] = "F"
+
+                elif row == row_ship_four_vertical2 and column == column_ship_four_vertical2\
+                or row == row_ship_four_vertical2+1 and column == column_ship_four_vertical2\
+                or row == row_ship_four_vertical2+2 and column == column_ship_four_vertical2\
+                or row == row_ship_four_vertical2+3 and column == column_ship_four_vertical2:
+                    self.board_player_two[row-1][column-1] = "F"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -940,11 +1104,16 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
+
                 else:
-                    self.board_player_two[guess_row-1][guess_column-1] = "X"
+                    self.board_player_two[row-1][column-1] = "X"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have failed"
+                    self.show_players("b2")
                     self.print_board_player_two()
                     raw_input("Press -ENTER- ")
-                    self.the_second_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+                    self.player_number_two(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
         row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
         row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
         row_ship_four_vertical, column_ship_four_vertical,\
@@ -952,7 +1121,18 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2)
-            if self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] == "A" and self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] == "A"\
+
+    def player_number_two(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2):
+
+
+        if self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] == "A" and self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] == "A"\
             and self.board_player_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] == "B" and self.board_player_two[row_ship_two_vertical2][column_ship_two_vertical2-1] == "B"\
             and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] == "C" and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] == "C"\
             and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] == "C" and self.board_player_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] == "D"\
@@ -961,41 +1141,45 @@ class MultiPlayer(SinglePlayer):
             and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] == "E" and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] == "E"\
             and self.board_player_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] == "F" and self.board_player_two[row_ship_four_vertical2][column_ship_four_vertical2-1] == "F"\
             and self.board_player_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] == "F" and self.board_player_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] == "F":
-                self.print_board_player_two()
-                print """
-    ____  __    _____  ____________     ___     _       _______   __
-   / __ \/ /   /   \ \/ / ____/ __ \   <  /    | |     / /  _/ | / /
-  / /_/ / /   / /| |\  / __/ / /_/ /   / /     | | /| / // //  |/ / 
- / ____/ /___/ ___ |/ / /___/ _, _/   / /      | |/ |/ // // /|  /  
-/_/   /_____/_/  |_/_/_____/_/ |_|   /_/       |__/|__/___/_/ |_/   
-"""
-                raw_input("Press -ENTER-")
-                self.clean_lists()
-                self.clear()
-                time.sleep(1)
-                self.menu()
-
-    def the_second_player(self, row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2):
-        self.clear()
-        time.sleep(1)
-        self.print_board_player_two()
-        time.sleep(1.6)
-        self.clear()
-        while True:
             self.clear()
             time.sleep(1)
-            print "PLAYER 2"
+            self.show_players("1w")
+            self.print_board_player_two()
+            raw_input("Press -ENTER-")
+            self.clean_lists()
+            self.clear()
+            time.sleep(1)
+            self.multi_play_again()
+        else:
+            self.clear()
+            time.sleep(1)
+            pass
+
+        print "... Your turn. PLAYER 2 ..."
+
+        ask = raw_input("\nDo you want to see your board?  y/n  ")
+        ask = ask.lower()
+        self.clear()
+        time.sleep(1)
+
+        if ask == "y":
+            print "\nHere you will see the shots of PLAYER 1\n"
+            self.print_board_player_two()
+            raw_input("Press -ENTER- ")
+            self.clear()
+            time.sleep(1)
+        else:
+            self.clear()
+            time.sleep(1)
+            pass
+
+        while True:
+            self.show_players("2")
             self.print_board_player_one()
-            guess_row, guess_column = self.alone_the_user()
-            if guess_row == row_bomb and guess_column == column_bomb:
-                self.board_player_one[guess_row-1][guess_column-1] = "#"
+            row, column = self.alone_the_user()
+
+            if row == row_bomb and column == column_bomb:
+                self.board_player_one[row-1][column-1] = "#"
                 self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
                 self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
                 self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
@@ -1014,157 +1198,212 @@ class MultiPlayer(SinglePlayer):
                 self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] = "F"
                 self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "F"
                 self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "F"
+                self.clear()
+                time.sleep(1)
+                print "CONGRATULATIONS YOU SHOT TO THE BOMB, THE SHIPS HAVE SUNK\n"
+                self.show_players("2w")
                 self.print_board_player_one()
-                print """
-    ____  __    _____  ____________     ___        _       _______   __
-   / __ \/ /   /   \ \/ / ____/ __ \   |__ \      | |     / /  _/ | / /
-  / /_/ / /   / /| |\  / __/ / /_/ /   __/ /      | | /| / // //  |/ / 
- / ____/ /___/ ___ |/ / /___/ _, _/   / __/       | |/ |/ // // /|  /  
-/_/   /_____/_/  |_/_/_____/_/ |_|   /____/       |__/|__/___/_/ |_/   
-                                                                       """
-                raw_input("Press -ENTER- ")
+                raw_input("\nPress -ENTER- ")
                 self.clean_lists()
                 self.clear()
                 time.sleep(1)
+                self.multi_play_again()
+            else:
+                if (row < 1 or row > 10) or (column < 1 or column > 10):
+                    self.clear()
+                    time.sleep(1)
+                    print "IT IS NOT IN THE OCEAN\n\n"
+
+                elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "A"\
+                or self.board_player_one[row-1][column-1] == "B" or self.board_player_one[row-1][column-1] == "C"\
+                or self.board_player_one[row-1][column-1] == "D" or self.board_player_one[row-1][column-1] == "E"\
+                or self.board_player_one[row-1][column-1] == "F":
+                    self.clear()
+                    time.sleep(1)
+                    print "Already You have written those coordinates\n\n"
+
+                elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
+                or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
+                    self.board_player_one[row-1][column-1] = "A"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+                elif row == row_ship_two_vertical and column == column_ship_two_vertical\
+                or row == row_ship_two_vertical+1 and column == column_ship_two_vertical:
+                    self.board_player_one[row-1][column-1] = "B"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+                elif row == row_ship_three_horizontal and column == column_ship_three_horizontal\
+                or row == row_ship_three_horizontal and column == column_ship_three_horizontal+1\
+                or row == row_ship_three_horizontal and column == column_ship_three_horizontal+2:
+                    self.board_player_one[row-1][column-1] = "C"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+                elif row == row_ship_three_vertical and column == column_ship_three_vertical\
+                or row == row_ship_three_vertical+1 and column == column_ship_three_vertical\
+                or row == row_ship_three_vertical+2 and column == column_ship_three_vertical:
+                    self.board_player_one[row-1][column-1] = "D"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+                elif row == row_ship_four_horizontal and column == column_ship_four_horizontal\
+                or row == row_ship_four_horizontal and column == column_ship_four_horizontal+1\
+                or row == row_ship_four_horizontal and column == column_ship_four_horizontal+2\
+                or row == row_ship_four_horizontal and column == column_ship_four_horizontal+3:
+                    self.board_player_one[row-1][column-1] = "E"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+                elif row == row_ship_four_vertical and column == column_ship_four_vertical\
+                or row == row_ship_four_vertical+1 and column == column_ship_four_vertical\
+                or row == row_ship_four_vertical+2 and column == column_ship_four_vertical\
+                or row == row_ship_four_vertical+3 and column == column_ship_four_vertical:
+                    self.board_player_one[row-1][column-1] = "F"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have shot to a part of one ship"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+                else:
+                    self.board_player_one[row-1][column-1] = "X"
+                    self.clear()
+                    time.sleep(1)
+                    print "You have failed"
+                    self.show_players("b1")
+                    self.print_board_player_one()
+                    raw_input("Press -ENTER- ")
+                    self.player_number_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
+        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
+        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
+        row_ship_four_vertical, column_ship_four_vertical,\
+        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
+        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
+        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
+        row_ship_four_vertical2, column_ship_four_vertical2)
+
+    def multi_play_again(self):
+        while True:
+            time.sleep(1)
+            option_user = raw_input("DO YOU WANT TO PLAY AGAIN y/n:  ")
+            option_user = option_user.lower()
+
+            if option_user == "y":
+                self.clean_lists()
+                self.clear()
+                time.sleep(1)
+                self.place_ships_players()
+            elif option_user == "n":
+                self.clean_lists()
+                time.sleep(1)
+                self.clear()
                 self.menu()
             else:
-                if (guess_row < 1 or guess_row > 10) or (guess_column < 1 or guess_column > 10):
-                    self.print_board_player_one()
-                    print "It is not in the ocean\n\n"
-                elif self.board_player_one[guess_row-1][guess_column-1] == "X" or self.board_player_one[guess_row-1][guess_column-1] == "A"\
-                or self.board_player_one[guess_row-1][guess_column-1] == "B" or self.board_player_one[guess_row-1][guess_column-1] == "C"\
-                or self.board_player_one[guess_row-1][guess_column-1] == "D" or self.board_player_one[guess_row-1][guess_column-1] == "E"\
-                or self.board_player_one[guess_row-1][guess_column-1] == "F":
-                    self.print_board_player_one()
-                    print "Already You have written those coordinates\n\n"
-                elif guess_row == row_ship_two_horizontal and guess_column == column_ship_two_horizontal\
-                or guess_row == row_ship_two_horizontal and guess_column == column_ship_two_horizontal+1:
-                    self.board_player_one[guess_row-1][guess_column-1] = "A"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_two_vertical and guess_column == column_ship_two_vertical\
-                or guess_row == row_ship_two_vertical+1 and guess_column == column_ship_two_vertical:
-                    self.board_player_one[guess_row-1][guess_column-1] = "B"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_three_horizontal and guess_column == column_ship_three_horizontal\
-                or guess_row == row_ship_three_horizontal and guess_column == column_ship_three_horizontal+1\
-                or guess_row == row_ship_three_horizontal and guess_column == column_ship_three_horizontal+2:
-                    self.board_player_one[guess_row-1][guess_column-1] = "C"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_three_vertical and guess_column == column_ship_three_vertical\
-                or guess_row == row_ship_three_vertical+1 and guess_column == column_ship_three_vertical\
-                or guess_row == row_ship_three_vertical+2 and guess_column == column_ship_three_vertical:
-                    self.board_player_one[guess_row-1][guess_column-1] = "D"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal\
-                or guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal+1\
-                or guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal+2\
-                or guess_row == row_ship_four_horizontal and guess_column == column_ship_four_horizontal+3:
-                    self.board_player_one[guess_row-1][guess_column-1] = "E"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-                elif guess_row == row_ship_four_vertical and guess_column == column_ship_four_vertical\
-                or guess_row == row_ship_four_vertical+1 and guess_column == column_ship_four_vertical\
-                or guess_row == row_ship_four_vertical+2 and guess_column == column_ship_four_vertical\
-                or guess_row == row_ship_four_vertical+3 and guess_column == column_ship_four_vertical:
-                    self.board_player_one[guess_row-1][guess_column-1] = "F"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-                else:
-                    self.board_player_one[guess_row-1][guess_column-1] = "X"
-                    self.print_board_player_one()
-                    raw_input("Press -ENTER- ")
-                    self.the_first_player(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
-        row_ship_two_vertical, column_ship_two_vertical, row_ship_three_horizontal, column_ship_three_horizontal,\
-        row_ship_three_vertical, column_ship_three_vertical, row_ship_four_horizontal, column_ship_four_horizontal,\
-        row_ship_four_vertical, column_ship_four_vertical,\
-        row_bomb2, column_bomb2, row_ship_two_horizontal2, column_ship_two_horizontal2,\
-        row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
-        row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
-        row_ship_four_vertical2, column_ship_four_vertical2)
-            if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "A" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
-            and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "B" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
-            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "C" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
-            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "C" and self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] == "D"\
-            and self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] == "D" and self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] == "D"\
-            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] == "E"\
-            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
-            and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
-            and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
-                self.print_board_player_one()
-                print """
-    ____  __    _____  ____________     ___        _       _______   __
-   / __ \/ /   /   \ \/ / ____/ __ \   |__ \      | |     / /  _/ | / /
-  / /_/ / /   / /| |\  / __/ / /_/ /   __/ /      | | /| / // //  |/ / 
- / ____/ /___/ ___ |/ / /___/ _, _/   / __/       | |/ |/ // // /|  /  
-/_/   /_____/_/  |_/_/_____/_/ |_|   /____/       |__/|__/___/_/ |_/   
-                                                                       """
-                raw_input("Press -ENTER- ")
-                self.clean_lists()
                 self.clear()
                 time.sleep(1)
-                self.menu()
+                print "Only can write -y- or -n- \n"
 
-    def menu_screen(self):
+    def instructions(self):
+        print "---------------------INSTRUCTIONS-------------------"
+        print "----SINGLE PLAYER:----"
+        print "\nWHEN YOU GUESS RIGHT THE POSITION OF ONE PART OF THE SHIP"
+        print "WILL APPEAR ONE OF THESE SYMBOLS |A|, |B|, |C|, |D|, |E|, |F|"
+        print "WHEN YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL |X|"
+        print "WHEN YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
+        print "AND YOU WILL WIN AUTOMATICALLY"
+        print "YOU HAVE 10 LIVES"
+
+        print "\n----MULTI PLAYER:-----"
+        print "\nWHEN ONE OF YOU GUESS RIGHT THE POSITION OF ONE PART OF THE SHIP"
+        print "WILL APPEAR ONE OF THESE SYMBOLS |A|, |B|, |C|, |D|, |E|, |F|"
+        print "WHEN ONE OF YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL|X|"
+        print "WHEN ONE OF YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
+        print "AND ONE OF YOU WILL WIN AUTOMATICALLY"
+        raw_input("\nPress -ENTER- to return the menu")
+        self.clear()
+        self.menu()
+        
+    def menu_print(self):
         print "WELCOME TO BATTLESHIP"
         print "\n --1. SINGLE PLAYER"
         print "\n --2. TWO PLAYERS"
+        print "\n --3. INSTRUCTIONS"
         print "\n --4. EXIT"
 
-    def menu_available(self):
+    def menu_option(self):
         while True:
-            option_user = raw_input("\n -- ")
+            option_user = raw_input(" \n-- ")
             if option_user == "1":
                 self.clear()
                 self.player_alone()
@@ -1172,6 +1411,9 @@ class MultiPlayer(SinglePlayer):
                 self.clear()
                 self.place_ships_players()
             elif option_user == "3":
+                self.clear()
+                self.instructions()
+            elif option_user == "4":
                 self.clear()
                 sys.exit()
             else:
@@ -1181,8 +1423,8 @@ class MultiPlayer(SinglePlayer):
 
     def menu(self):
         self.clear()
-        self.menu_screen()
-        self.menu_available()
+        self.menu_print()
+        self.menu_option()
 
 MAIN = MultiPlayer()
 MAIN.menu()
