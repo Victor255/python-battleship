@@ -605,7 +605,7 @@ class SinglePlayer(GameBattle):
         print row_ship_four_horizontal, column_ship_four_horizontal
         print "\nship of four v"
         print row_ship_four_vertical, column_ship_four_vertical"""
-        #self.clear()
+        self.clear()
         life = 0
         while life <= 13:
             self.show_players("1")
@@ -613,76 +613,75 @@ class SinglePlayer(GameBattle):
             row, column = self.alone_the_user()
             if row == row_bomb and column == column_bomb:
                 self.board_player_one[row-1][column-1] = "#"
-                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
-                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
-                self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
-                self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] = "B"
-                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "C"
-                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "C"
-                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "C"
-                self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "D"
-                self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] = "D"
-                self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "D"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "E"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "E"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "E"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "E"
-                self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "F"
-                self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] = "F"
-                self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "F"
-                self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "F"
-                #self.clear()
+                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "P"
+                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "P"
+                self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "A"
+                self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] = "A"
+                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "T"
+                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "T"
+                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "T"
+                self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "R"
+                self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] = "R"
+                self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "R"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "I"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "I"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "I"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "I"
+                self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "C"
+                self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] = "C"
+                self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "C"
+                self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "C"
                 print "CONGRATULATIONS YOU SHOT TO THE BOMB, THE SHIPS HAVE SUNK\n"
                 self.show_players("1w")
                 self.print_board_player_one()
                 raw_input("\nPress ENTER")
                 self.clean_lists()
-                self.clear()
-                self.play_again()
+                #self.clear()
+                #self.play_again()
             else:
                 if (row < 1 or row > 13) or (column < 1 or column > 13):
                     self.clear()
                     print "IT IS NOT IN THE OCEAN\n\n"
                     life +=1
-                    print "You still have %d lives, Come on, you can sink the ships" % (13-life)
+                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (13-life)
 
-                elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "A"\
-                or self.board_player_one[row-1][column-1] == "B" or self.board_player_one[row-1][column-1] == "C"\
-                or self.board_player_one[row-1][column-1] == "D" or self.board_player_one[row-1][column-1] == "E"\
-                or self.board_player_one[row-1][column-1] == "F":
+                elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "P"\
+                or self.board_player_one[row-1][column-1] == "A" or self.board_player_one[row-1][column-1] == "T"\
+                or self.board_player_one[row-1][column-1] == "R" or self.board_player_one[row-1][column-1] == "I"\
+                or self.board_player_one[row-1][column-1] == "C":
                     self.clear()
                     print "ALREADY YOU HAVE WRITTEN THOSE COORDINATES\n"
                     life +=1
                     print "You still have %d lives, Come on, you can sink the ships" % (13-life)
                 elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
                 or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
-                    self.board_player_one[row-1][column-1] = "A"
+                    self.board_player_one[row-1][column-1] = "P"
                     self.clear()
                 elif row == row_ship_two_vertical and column == column_ship_two_vertical\
                 or row == row_ship_two_vertical+1 and column == column_ship_two_vertical:
-                    self.board_player_one[row-1][column-1] = "B"
+                    self.board_player_one[row-1][column-1] = "A"
                     self.clear()
                 elif row == row_ship_three_horizontal and column == column_ship_three_horizontal\
                 or row == row_ship_three_horizontal and column == column_ship_three_horizontal+1\
                 or row == row_ship_three_horizontal and column == column_ship_three_horizontal+2:
-                    self.board_player_one[row-1][column-1] = "C"
+                    self.board_player_one[row-1][column-1] = "T"
                     self.clear()
                 elif row == row_ship_three_vertical and column == column_ship_three_vertical\
                 or row == row_ship_three_vertical+1 and column == column_ship_three_vertical\
                 or row == row_ship_three_vertical+2 and column == column_ship_three_vertical:
-                    self.board_player_one[row-1][column-1] = "D"
+                    self.board_player_one[row-1][column-1] = "R"
                     self.clear()
                 elif row == row_ship_four_horizontal and column == column_ship_four_horizontal\
                 or row == row_ship_four_horizontal and column == column_ship_four_horizontal+1\
                 or row == row_ship_four_horizontal and column == column_ship_four_horizontal+2\
                 or row == row_ship_four_horizontal and column == column_ship_four_horizontal+3:
-                    self.board_player_one[row-1][column-1] = "E"
+                    self.board_player_one[row-1][column-1] = "I"
                     self.clear()
                 elif row == row_ship_four_vertical and column == column_ship_four_vertical\
                 or row == row_ship_four_vertical+1 and column == column_ship_four_vertical\
                 or row == row_ship_four_vertical+2 and column == column_ship_four_vertical\
                 or row == row_ship_four_vertical+3 and column == column_ship_four_vertical:
-                    self.board_player_one[row-1][column-1] = "F"
+                    self.board_player_one[row-1][column-1] = "C"
                     self.clear()
                 else:
                     self.board_player_one[row-1][column-1] = "X"
@@ -690,17 +689,16 @@ class SinglePlayer(GameBattle):
                     print "TRY AGAIN\n"
                     life+=1
                     print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS\n" % (13-life)
-            if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "A" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
-            and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "B" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
-            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "C" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
-            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "C" and self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] == "D"\
-            and self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] == "D" and self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] == "D"\
-            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] == "E"\
-            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
-            and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
-            and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
+            if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "P" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
+            and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "A" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
+            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "T" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
+            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "T" and self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] == "D"\
+            and self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] == "R" and self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] == "D"\
+            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "I" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] == "E"\
+            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "I" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
+            and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "C" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
+            and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "C" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
                 self.clear()
-                time.sleep(1)
                 print "YOU HAVE SUNK ALL SHIPS\n"
                 self.show_players("1w")
                 self.print_board_player_one()
@@ -749,44 +747,44 @@ class MultiPlayer(SinglePlayer):
         self.print_show_board_one()
         row_ship_two_horizontal, column_ship_two_horizontal = self.ship_two_horizontal("no aleatory one")
         self.clear()
-        self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
-        self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
+        self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "P"
+        self.show_board_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "P"
         self.show_players("b1")
         self.print_show_board_one()
         row_ship_two_vertical, column_ship_two_vertical = self.ship_two_vertical("no aleatory one")
         self.clear()
-        self.show_board_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
-        self.show_board_one[row_ship_two_vertical][column_ship_two_vertical-1] = "B"
+        self.show_board_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "A"
+        self.show_board_one[row_ship_two_vertical][column_ship_two_vertical-1] = "A"
         self.show_players("b1")
         self.print_show_board_one()
         row_ship_three_horizontal, column_ship_three_horizontal = self. ship_three_horizontal("no aleatory one")
         self.clear()
-        self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "C"
-        self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "C"
-        self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "C"
+        self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "T"
+        self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "T"
+        self.show_board_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "T"
         self.show_players("b1")
         self.print_show_board_one()
         row_ship_three_vertical, column_ship_three_vertical = self.ship_three_vertical("no aleatory one")
         self.clear()
-        self.show_board_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "D"
-        self.show_board_one[row_ship_three_vertical][column_ship_three_vertical-1] = "D"
-        self.show_board_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "D"
+        self.show_board_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "R"
+        self.show_board_one[row_ship_three_vertical][column_ship_three_vertical-1] = "R"
+        self.show_board_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "R"
         self.show_players("b1")
         self.print_show_board_one()
         row_ship_four_horizontal, column_ship_four_horizontal = self.ship_four_horizontal("no aleatory one")
         self.clear()
-        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "E"
-        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "E"
-        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "E"
-        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "E"
+        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "I"
+        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "I"
+        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "I"
+        self.show_board_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "I"
         self.show_players("b1")
         self.print_show_board_one()
         row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("no aleatory one")
         self.clear()
-        self.show_board_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "F"
-        self.show_board_one[row_ship_four_vertical][column_ship_four_vertical-1] = "F"
-        self.show_board_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "F"
-        self.show_board_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "F"
+        self.show_board_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "C"
+        self.show_board_one[row_ship_four_vertical][column_ship_four_vertical-1] = "C"
+        self.show_board_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "C"
+        self.show_board_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "C"
         self.show_players("b1")
         self.print_show_board_one()
         self.clear()
@@ -804,45 +802,45 @@ class MultiPlayer(SinglePlayer):
         self.print_show_board_two()
         row_ship_two_horizontal2, column_ship_two_horizontal2 = self.ship_two_horizontal("no aleatory two")
         self.clear()
-        self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "A"
-        self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "A"
+        self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "P"
+        self.show_board_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "P"
         self.show_players("b2")
         self.print_show_board_two()
         
         row_ship_two_vertical2, column_ship_two_vertical2 = self.ship_two_vertical("no aleatory two")
         self.clear()
-        self.show_board_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "B"
-        self.show_board_two[row_ship_two_vertical2][column_ship_two_vertical2-1] = "B"
+        self.show_board_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "A"
+        self.show_board_two[row_ship_two_vertical2][column_ship_two_vertical2-1] = "A"
         self.show_players("b2")
         self.print_show_board_two()
         row_ship_three_horizontal2, column_ship_three_horizontal2 = self. ship_three_horizontal("no aleatory two")
         self.clear()
-        self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] = "C"
-        self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] = "C"
-        self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] = "C"
+        self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] = "T"
+        self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] = "T"
+        self.show_board_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] = "T"
         self.show_players("b2")
         self.print_show_board_two()
         row_ship_three_vertical2, column_ship_three_vertical2 = self.ship_three_vertical("no aleatory two")
         self.clear()
-        self.show_board_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] = "D"
-        self.show_board_two[row_ship_three_vertical2][column_ship_three_vertical2-1] = "D"
-        self.show_board_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] = "D"
+        self.show_board_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] = "R"
+        self.show_board_two[row_ship_three_vertical2][column_ship_three_vertical2-1] = "R"
+        self.show_board_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] = "R"
         self.show_players("b2")
         self.print_show_board_two()
         row_ship_four_horizontal2, column_ship_four_horizontal2 = self.ship_four_horizontal("no aleatory two")
         self.clear()
-        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] = "E"
-        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] = "E"
-        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] = "E"
-        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] = "E"
+        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] = "I"
+        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] = "I"
+        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] = "I"
+        self.show_board_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] = "I"
         self.show_players("b2")
         self.print_show_board_two()
         row_ship_four_vertical2, column_ship_four_vertical2 = self.ship_four_vertical("no aleatory two")
         self.clear()
-        self.show_board_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] = "F"
-        self.show_board_two[row_ship_four_vertical2][column_ship_four_vertical2-1] = "F"
-        self.show_board_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] = "F"
-        self.show_board_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] = "F"
+        self.show_board_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] = "C"
+        self.show_board_two[row_ship_four_vertical2][column_ship_four_vertical2-1] = "C"
+        self.show_board_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] = "C"
+        self.show_board_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] = "C"
         self.show_players("b2")
         self.print_show_board_two()
         self.player_one(row_bomb, column_bomb, row_ship_two_horizontal, column_ship_two_horizontal,\
@@ -862,15 +860,15 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2):
-        if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "A" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
-            and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "B" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
-            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "C" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
-            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "C" and self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] == "D"\
-            and self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] == "D" and self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] == "D"\
-            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] == "E"\
-            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "E" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
-            and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
-            and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "F" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
+        if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "P" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
+            and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "A" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
+            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "T" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
+            and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "T" and self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] == "D"\
+            and self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] == "R" and self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] == "D"\
+            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "I" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] == "E"\
+            and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "I" and self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "E"\
+            and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "C" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
+            and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "C" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
             self.clear()
             self.show_players("2w")
             self.print_board_player_one()
@@ -899,24 +897,24 @@ class MultiPlayer(SinglePlayer):
             row, column = self.alone_the_user()
             if row == row_bomb2 and column == column_bomb2:
                 self.board_player_two[row-1][column-1] = "#"
-                self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "A"
-                self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "A"
-                self.board_player_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "B"
-                self.board_player_two[row_ship_two_vertical2][column_ship_two_vertical2-1] = "B"
-                self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] = "C"
-                self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] = "C"
-                self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] = "C"
-                self.board_player_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] = "D"
-                self.board_player_two[row_ship_three_vertical2][column_ship_three_vertical2-1] = "D"
-                self.board_player_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] = "D"
-                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] = "E"
-                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] = "E"
-                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] = "E"
-                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] = "E"
-                self.board_player_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] = "F"
-                self.board_player_two[row_ship_four_vertical2][column_ship_four_vertical2-1] = "F"
-                self.board_player_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] = "F"
-                self.board_player_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] = "F"
+                self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] = "P"
+                self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] = "P"
+                self.board_player_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] = "A"
+                self.board_player_two[row_ship_two_vertical2][column_ship_two_vertical2-1] = "A"
+                self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] = "T"
+                self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] = "T"
+                self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] = "T"
+                self.board_player_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] = "R"
+                self.board_player_two[row_ship_three_vertical2][column_ship_three_vertical2-1] = "R"
+                self.board_player_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] = "R"
+                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] = "I"
+                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] = "I"
+                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] = "I"
+                self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] = "I"
+                self.board_player_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] = "C"
+                self.board_player_two[row_ship_four_vertical2][column_ship_four_vertical2-1] = "C"
+                self.board_player_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] = "C"
+                self.board_player_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] = "C"
                 self.clear()
                 print "CONGRATULATIONS YOU SHOT TO THE BOMB, THE SHIPS HAVE SUNK\n"
                 self.show_players("1w")
@@ -929,15 +927,15 @@ class MultiPlayer(SinglePlayer):
                 if (row < 1 or row > 10) or (column < 1 or column > 10):
                     self.clear()
                     print "IT IS NOT IN THE OCEAN\n"
-                elif self.board_player_two[row-1][column-1] == "X" or self.board_player_two[row-1][column-1] == "A"\
-                or self.board_player_two[row-1][column-1] == "B" or self.board_player_two[row-1][column-1] == "C"\
-                or self.board_player_two[row-1][column-1] == "D" or self.board_player_two[row-1][column-1] == "E"\
-                or self.board_player_two[row-1][column-1] == "F":
+                elif self.board_player_two[row-1][column-1] == "X" or self.board_player_two[row-1][column-1] == "P"\
+                or self.board_player_two[row-1][column-1] == "A" or self.board_player_two[row-1][column-1] == "T"\
+                or self.board_player_two[row-1][column-1] == "R" or self.board_player_two[row-1][column-1] == "I"\
+                or self.board_player_two[row-1][column-1] == "C":
                     self.clear()
                     print "ALREADY YOU HAVE WRITTEN THOSE COORDINATES\n"
                 elif row == row_ship_two_horizontal2 and column == column_ship_two_horizontal2\
                 or row == row_ship_two_horizontal2 and column == column_ship_two_horizontal2+1:
-                    self.board_player_two[row-1][column-1] = "A"
+                    self.board_player_two[row-1][column-1] = "P"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b2")
@@ -953,7 +951,7 @@ class MultiPlayer(SinglePlayer):
         row_ship_four_vertical2, column_ship_four_vertical2)
                 elif row == row_ship_two_vertical2 and column == column_ship_two_vertical2\
                 or row == row_ship_two_vertical2+1 and column == column_ship_two_vertical2:
-                    self.board_player_two[row-1][column-1] = "B"
+                    self.board_player_two[row-1][column-1] = "A"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b2")
@@ -970,7 +968,7 @@ class MultiPlayer(SinglePlayer):
                 elif row == row_ship_three_horizontal2 and column == column_ship_three_horizontal2\
                 or row == row_ship_three_horizontal2 and column == column_ship_three_horizontal2+1\
                 or row == row_ship_three_horizontal2 and column == column_ship_three_horizontal2+2:
-                    self.board_player_two[row-1][column-1] = "C"
+                    self.board_player_two[row-1][column-1] = "T"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b2")
@@ -987,7 +985,7 @@ class MultiPlayer(SinglePlayer):
                 elif row == row_ship_three_vertical2 and column == column_ship_three_vertical2\
                 or row == row_ship_three_vertical2+1 and column == column_ship_three_vertical2\
                 or row == row_ship_three_vertical2+2 and column == column_ship_three_vertical2:
-                    self.board_player_two[row-1][column-1] = "D"
+                    self.board_player_two[row-1][column-1] = "R"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b2")
@@ -1005,7 +1003,7 @@ class MultiPlayer(SinglePlayer):
                 or row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2+1\
                 or row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2+2\
                 or row == row_ship_four_horizontal2 and column == column_ship_four_horizontal2+3:
-                    self.board_player_two[row-1][column-1] = "E"
+                    self.board_player_two[row-1][column-1] = "I"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b2")
@@ -1023,7 +1021,7 @@ class MultiPlayer(SinglePlayer):
                 or row == row_ship_four_vertical2+1 and column == column_ship_four_vertical2\
                 or row == row_ship_four_vertical2+2 and column == column_ship_four_vertical2\
                 or row == row_ship_four_vertical2+3 and column == column_ship_four_vertical2:
-                    self.board_player_two[row-1][column-1] = "F"
+                    self.board_player_two[row-1][column-1] = "C"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b2")
@@ -1061,15 +1059,15 @@ class MultiPlayer(SinglePlayer):
         row_ship_two_vertical2, column_ship_two_vertical2, row_ship_three_horizontal2, column_ship_three_horizontal2,\
         row_ship_three_vertical2, column_ship_three_vertical2, row_ship_four_horizontal2, column_ship_four_horizontal2,\
         row_ship_four_vertical2, column_ship_four_vertical2):
-        if self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] == "A" and self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] == "A"\
-            and self.board_player_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] == "B" and self.board_player_two[row_ship_two_vertical2][column_ship_two_vertical2-1] == "B"\
-            and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] == "C" and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] == "C"\
-            and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] == "C" and self.board_player_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] == "D"\
-            and self.board_player_two[row_ship_three_vertical2][column_ship_three_vertical2-1] == "D" and self.board_player_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] == "D"\
-            and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] == "E" and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] == "E"\
-            and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] == "E" and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] == "E"\
-            and self.board_player_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] == "F" and self.board_player_two[row_ship_four_vertical2][column_ship_four_vertical2-1] == "F"\
-            and self.board_player_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] == "F" and self.board_player_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] == "F":
+        if self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2-1] == "P" and self.board_player_two[row_ship_two_horizontal2-1][column_ship_two_horizontal2] == "A"\
+            and self.board_player_two[row_ship_two_vertical2-1][column_ship_two_vertical2-1] == "A" and self.board_player_two[row_ship_two_vertical2][column_ship_two_vertical2-1] == "B"\
+            and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2-1] == "T" and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2] == "C"\
+            and self.board_player_two[row_ship_three_horizontal2-1][column_ship_three_horizontal2+1] == "T" and self.board_player_two[row_ship_three_vertical2-1][column_ship_three_vertical2-1] == "D"\
+            and self.board_player_two[row_ship_three_vertical2][column_ship_three_vertical2-1] == "R" and self.board_player_two[row_ship_three_vertical2+1][column_ship_three_vertical2-1] == "D"\
+            and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2-1] == "I" and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2] == "E"\
+            and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+1] == "I" and self.board_player_two[row_ship_four_horizontal2-1][column_ship_four_horizontal2+2] == "E"\
+            and self.board_player_two[row_ship_four_vertical2-1][column_ship_four_vertical2-1] == "C" and self.board_player_two[row_ship_four_vertical2][column_ship_four_vertical2-1] == "F"\
+            and self.board_player_two[row_ship_four_vertical2+1][column_ship_four_vertical2-1] == "C" and self.board_player_two[row_ship_four_vertical2+2][column_ship_four_vertical2-1] == "F":
             self.clear()
             self.show_players("1w")
             self.print_board_player_two()
@@ -1098,24 +1096,24 @@ class MultiPlayer(SinglePlayer):
             row, column = self.alone_the_user()
             if row == row_bomb and column == column_bomb:
                 self.board_player_one[row-1][column-1] = "#"
-                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "A"
-                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "A"
-                self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "B"
-                self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] = "B"
-                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "C"
-                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "C"
-                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "C"
-                self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "D"
-                self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] = "D"
-                self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "D"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "E"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "E"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "E"
-                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "E"
-                self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "F"
-                self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] = "F"
-                self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "F"
-                self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "F"
+                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] = "P"
+                self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] = "P"
+                self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] = "A"
+                self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] = "A"
+                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "T"
+                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] = "T"
+                self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal+1] = "T"
+                self.board_player_one[row_ship_three_vertical-1][column_ship_three_vertical-1] = "R"
+                self.board_player_one[row_ship_three_vertical][column_ship_three_vertical-1] = "R"
+                self.board_player_one[row_ship_three_vertical+1][column_ship_three_vertical-1] = "R"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "I"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal] = "I"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "I"
+                self.board_player_one[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "I"
+                self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] = "C"
+                self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] = "C"
+                self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] = "C"
+                self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] = "C"
                 self.clear()
                 print "CONGRATULATIONS YOU SHOT TO THE BOMB, THE SHIPS HAVE SUNK\n"
                 self.show_players("2w")
@@ -1129,15 +1127,15 @@ class MultiPlayer(SinglePlayer):
                     self.clear()
                     time.sleep(1)
                     print "IT IS NOT IN THE OCEAN\n\n"
-                elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "A"\
-                or self.board_player_one[row-1][column-1] == "B" or self.board_player_one[row-1][column-1] == "C"\
-                or self.board_player_one[row-1][column-1] == "D" or self.board_player_one[row-1][column-1] == "E"\
-                or self.board_player_one[row-1][column-1] == "F":
+                elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "P"\
+                or self.board_player_one[row-1][column-1] == "A" or self.board_player_one[row-1][column-1] == "T"\
+                or self.board_player_one[row-1][column-1] == "R" or self.board_player_one[row-1][column-1] == "I"\
+                or self.board_player_one[row-1][column-1] == "C":
                     self.clear()
                     print "ALREADY YOU HAVE WRITTEN THOSE COORDINATES\n\n"
                 elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
                 or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
-                    self.board_player_one[row-1][column-1] = "A"
+                    self.board_player_one[row-1][column-1] = "P"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b1")
@@ -1153,7 +1151,7 @@ class MultiPlayer(SinglePlayer):
         row_ship_four_vertical2, column_ship_four_vertical2)
                 elif row == row_ship_two_vertical and column == column_ship_two_vertical\
                 or row == row_ship_two_vertical+1 and column == column_ship_two_vertical:
-                    self.board_player_one[row-1][column-1] = "B"
+                    self.board_player_one[row-1][column-1] = "A"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b1")
@@ -1170,7 +1168,7 @@ class MultiPlayer(SinglePlayer):
                 elif row == row_ship_three_horizontal and column == column_ship_three_horizontal\
                 or row == row_ship_three_horizontal and column == column_ship_three_horizontal+1\
                 or row == row_ship_three_horizontal and column == column_ship_three_horizontal+2:
-                    self.board_player_one[row-1][column-1] = "C"
+                    self.board_player_one[row-1][column-1] = "T"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b1")
@@ -1187,7 +1185,7 @@ class MultiPlayer(SinglePlayer):
                 elif row == row_ship_three_vertical and column == column_ship_three_vertical\
                 or row == row_ship_three_vertical+1 and column == column_ship_three_vertical\
                 or row == row_ship_three_vertical+2 and column == column_ship_three_vertical:
-                    self.board_player_one[row-1][column-1] = "D"
+                    self.board_player_one[row-1][column-1] = "R"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b1")
@@ -1205,7 +1203,7 @@ class MultiPlayer(SinglePlayer):
                 or row == row_ship_four_horizontal and column == column_ship_four_horizontal+1\
                 or row == row_ship_four_horizontal and column == column_ship_four_horizontal+2\
                 or row == row_ship_four_horizontal and column == column_ship_four_horizontal+3:
-                    self.board_player_one[row-1][column-1] = "E"
+                    self.board_player_one[row-1][column-1] = "I"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b1")
@@ -1223,7 +1221,7 @@ class MultiPlayer(SinglePlayer):
                 or row == row_ship_four_vertical+1 and column == column_ship_four_vertical\
                 or row == row_ship_four_vertical+2 and column == column_ship_four_vertical\
                 or row == row_ship_four_vertical+3 and column == column_ship_four_vertical:
-                    self.board_player_one[row-1][column-1] = "F"
+                    self.board_player_one[row-1][column-1] = "C"
                     self.clear()
                     print "YOU HAVE SHOT TO A PART OF ONE SHIP"
                     self.show_players("b1")
@@ -1273,7 +1271,7 @@ class MultiPlayer(SinglePlayer):
         print "---------------------INSTRUCTIONS-------------------"
         print "----SINGLE PLAYER:----"
         print "\nWHEN YOU GUESS RIGHT THE POSITION OF ONE PART OF THE SHIP"
-        print "WILL APPEAR ONE OF THESE SYMBOLS |A|, |B|, |C|, |D|, |E|, |F|"
+        print "WILL APPEAR ONE OF THESE SYMBOLS |P|, |A|, |T|, |R|, |I|, |C|"
         print "WHEN YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL |X|"
         print "WHEN YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
         print "AND YOU WILL WIN AUTOMATICALLY"
@@ -1281,7 +1279,7 @@ class MultiPlayer(SinglePlayer):
 
         print "\n----MULTI PLAYER:-----"
         print "\nWHEN ONE OF YOU GUESS RIGHT THE POSITION OF ONE PART OF THE SHIP"
-        print "WILL APPEAR ONE OF THESE SYMBOLS |A|, |B|, |C|, |D|, |E|, |F|"
+        print "WILL APPEAR ONE OF THESE SYMBOLS |P|, |A|, |T|, |R|, |I|, |C|"
         print "WHEN ONE OF YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL|X|"
         print "WHEN ONE OF YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
         print "AND ONE OF YOU WILL WIN AUTOMATICALLY"
@@ -1312,9 +1310,7 @@ class MultiPlayer(SinglePlayer):
                 self.clear()
                 sys.exit()
             else:
-                self.clear()
                 print "INVALID OPTION"
-                self.menu()
 
     def menu(self):
         self.clear()
