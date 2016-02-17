@@ -35,7 +35,6 @@ class GameBattle(object):
             self.board_player_one_to_check.append(["-"] * 10)
 
     def print_board_player_one_to_check(self):
-
         for o in self.board_player_one_to_check:
             print "|" + "|".join(o) + "|"
 
@@ -64,7 +63,6 @@ class GameBattle(object):
             self.board_player_two.append(["-"] * 10)
 
     def print_board_player_two(self):
-
         print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.board_player_two:
@@ -109,6 +107,7 @@ class GameBattle(object):
 |___|  |_______|___|___| |___| |_______|___|__|    |______|   
                                             \n"""
         elif player == "1w":
+            self.clear()
             print """
  ______ _____   _______ ___ ___ _______ ______      ____        ________ _______ _______ 
 |   __ \     |_|   _   |   |   |    ___|   __ \    |_   |      |  |  |  |_     _|    |  |
@@ -117,6 +116,7 @@ class GameBattle(object):
                                                                                             
 """
         elif player == "2w":
+            self.clear()
             print """
  ______ _____   _______ ___ ___ _______ ______      ______      ________ _______ _______ 
 |   __ \     |_|   _   |   |   |    ___|   __ \    |__    |    |  |  |  |_     _|    |  |
@@ -442,14 +442,14 @@ class GameBattle(object):
         if aleatory_or_no == "aleatory":
             ship4 = True
             while ship4 == True:
-                row_ship_four_horizontal = random.randint(1,10)
-                column_ship_four_horizontal = random.randint(1,7)
+                row_ship_four_horizontal = random.randint(1, 10)
+                column_ship_four_horizontal = random.randint(1, 7)
                 if self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "-"\
                 and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] == "-" and self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] == "-":
                     self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] = "*"
                     self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] = "*"
                     self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+1] = "*"
-                    self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "*" 
+                    self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal+2] = "*"
                     return row_ship_four_horizontal, column_ship_four_horizontal
                     break
                 elif self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal-1] == "*" or self.board_player_one_to_check[row_ship_four_horizontal-1][column_ship_four_horizontal] == "*"\
@@ -591,23 +591,23 @@ class SinglePlayer(GameBattle):
         row_ship_three_vertical, column_ship_three_vertical = self.ship_three_vertical("aleatory")
         row_ship_four_horizontal, column_ship_four_horizontal = self.ship_four_horizontal("aleatory")
         row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("aleatory")
-        print "bomb"
+        print "the position of the bomb"
         print row_bomb, column_bomb
-        """print "\nship of two h"
+        print "\n the position of the ship of two horizontal "
         print row_ship_two_horizontal, column_ship_two_horizontal
-        print "\nship of two v"
+        print "\n the position of the ship of two vertical"
         print row_ship_two_vertical, column_ship_two_vertical
-        print "\nship of three h"
+        print "\n the position of the ship of three horizontal"
         print row_ship_three_horizontal, column_ship_three_horizontal
-        print "\nship of three v"
+        print "\n the position of the ship of three vertical"
         print row_ship_three_vertical, column_ship_three_vertical
-        print "\nship of four h"
+        print "\n the position of the ship of four horizontal"
         print row_ship_four_horizontal, column_ship_four_horizontal
-        print "\nship of four v"
-        print row_ship_four_vertical, column_ship_four_vertical"""
+        print "\nthe position of the ship of four vertical"
+        print row_ship_four_vertical, column_ship_four_vertical
         self.clear()
         life = 0
-        while life <= 13:
+        while life <= 8:
             self.show_players("1")
             self.print_board_player_one()
             row, column = self.alone_the_user()
@@ -637,13 +637,13 @@ class SinglePlayer(GameBattle):
                 raw_input("\nPress ENTER")
                 self.clean_lists()
                 #self.clear()
-                #self.play_again()
+                self.play_again()
             else:
-                if (row < 1 or row > 13) or (column < 1 or column > 13):
+                if (row < 1 or row > 8) or (column < 1 or column > 8):
                     self.clear()
                     print "IT IS NOT IN THE OCEAN\n\n"
                     life +=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (13-life)
+                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (8-life)
 
                 elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "P"\
                 or self.board_player_one[row-1][column-1] == "A" or self.board_player_one[row-1][column-1] == "T"\
@@ -652,7 +652,7 @@ class SinglePlayer(GameBattle):
                     self.clear()
                     print "ALREADY YOU HAVE WRITTEN THOSE COORDINATES\n"
                     life +=1
-                    print "You still have %d lives, Come on, you can sink the ships" % (13-life)
+                    print "You still have %d lives, Come on, you can sink the ships" % (8-life)
                 elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
                 or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
                     self.board_player_one[row-1][column-1] = "P"
@@ -688,7 +688,7 @@ class SinglePlayer(GameBattle):
                     self.clear()
                     print "TRY AGAIN\n"
                     life+=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS\n" % (13-life)
+                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS\n" % (8-life)
             if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "P" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
             and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "A" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
             and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "T" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
@@ -706,7 +706,7 @@ class SinglePlayer(GameBattle):
                 self.clean_lists()
                 self.clear()
                 self.play_again()
-            if life == 13:
+            if life == 5:
                 self.clear()
                 print """
  ___ ___ _______ _______      _____   _______ _______ _______ 
@@ -715,12 +715,12 @@ class SinglePlayer(GameBattle):
   |___| |_______|_______|    |_______|_______|_______|_______|
                                       """
                 raw_input("\nPress ENTER ")
-                self.clear()
+                #self.clear()
                 self.play_again()
 
     def play_again(self):
         while True:
-            option_user = raw_input("DO YOU WANT TO PLAY AGAIN y/n:  ")
+            option_user = raw_input("\nDO YOU WANT TO PLAY AGAIN y/n:  ")
             option_user = option_user.lower()
             if option_user == "y":
                 self.clean_lists()
@@ -731,7 +731,6 @@ class SinglePlayer(GameBattle):
                 self.clear()
                 self.menu()
             else:
-                self.clear()
                 print "ONLY CAN WRITE y/n \n"
 
 class MultiPlayer(SinglePlayer):
@@ -789,7 +788,7 @@ class MultiPlayer(SinglePlayer):
         self.print_show_board_one()
         self.clear()
         print "NOW THE PLAYER TWO MUST PUT HIS SHIPS\n"
-        raw_input("Press ENTER")
+        raw_input("\nPress ENTER")
         self.clear()
         self.generate_board_player_two()
         self.generate_show_board_two()
@@ -880,17 +879,6 @@ class MultiPlayer(SinglePlayer):
             self.clear()
             pass
         print "YOUR TURN PLAYER 1"
-        ask = raw_input("\nDO YOU WANT TO SEE YOUR BOARD y/n  ")
-        ask = ask.lower()
-        self.clear()
-        if ask == "y":
-            print "\nHERE YOU WILL SEE THE SHOTS OF PLAYER 2\n"
-            self.print_board_player_one()
-            raw_input("\nPress ENTER ")
-            self.clear()
-        else:
-            self.clear()
-            pass
         while True:
             self.show_players("1")
             self.print_board_player_two()
@@ -1079,17 +1067,6 @@ class MultiPlayer(SinglePlayer):
             self.clear()
             pass
         print "YOUR TURN PLAYER 2"
-        ask = raw_input("\nDO YOU WANT TO SEE YOUR BOARD?  y/n  ")
-        ask = ask.lower()
-        self.clear()
-        if ask == "y":
-            print "\nHERE YOU WILL SEE THE SHOTS OF PLAYER 1\n"
-            self.print_board_player_two()
-            raw_input("\nPress ENTER ")
-            self.clear()
-        else:
-            self.clear()
-            pass
         while True:
             self.show_players("2")
             self.print_board_player_one()
@@ -1125,7 +1102,6 @@ class MultiPlayer(SinglePlayer):
             else:
                 if (row < 1 or row > 10) or (column < 1 or column > 10):
                     self.clear()
-                    time.sleep(1)
                     print "IT IS NOT IN THE OCEAN\n\n"
                 elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "P"\
                 or self.board_player_one[row-1][column-1] == "A" or self.board_player_one[row-1][column-1] == "T"\
@@ -1264,7 +1240,6 @@ class MultiPlayer(SinglePlayer):
                 self.clear()
                 self.menu()
             else:
-                self.clear()
                 print "ONLY CAN WRITE y/n \n"
 
     def instructions(self):
@@ -1275,7 +1250,7 @@ class MultiPlayer(SinglePlayer):
         print "WHEN YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL |X|"
         print "WHEN YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
         print "AND YOU WILL WIN AUTOMATICALLY"
-        print "YOU HAVE 10 LIVES"
+        print "YOU HAVE 8 LIVES"
 
         print "\n----MULTI PLAYER:-----"
         print "\nWHEN ONE OF YOU GUESS RIGHT THE POSITION OF ONE PART OF THE SHIP"
@@ -1283,7 +1258,7 @@ class MultiPlayer(SinglePlayer):
         print "WHEN ONE OF YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL|X|"
         print "WHEN ONE OF YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
         print "AND ONE OF YOU WILL WIN AUTOMATICALLY"
-        raw_input("\nPress ENTER to return the menu")
+        raw_input("\nPRESS ENTER TO RETURN THE MENU")
         self.clear()
         self.menu()
         
