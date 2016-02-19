@@ -43,7 +43,7 @@ class GameBattle(object):
             self.board_player_one.append(["-"] * 10)
 
     def print_board_player_one(self):
-        print " 1 2 3 4 5 6 7 15 9 10"
+        print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.board_player_one:
             print "|" + "|".join(o) + "|" + str(number)
@@ -65,7 +65,7 @@ class GameBattle(object):
             self.board_player_two.append(["-"] * 10)
 
     def print_board_player_two(self):
-        print " 1 2 3 4 5 6 7 15 9 10"
+        print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.board_player_two:
             print "|" + "|".join(o) + "|" + str(number)
@@ -77,7 +77,7 @@ class GameBattle(object):
             self.show_board_one.append(["-"]*10)
 
     def print_show_board_one(self):
-        print " 1 2 3 4 5 6 7 15 9 10"
+        print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.show_board_one:
             print "|" + "|".join(o) + "|" + str(number)
@@ -88,7 +88,7 @@ class GameBattle(object):
             self.show_board_two.append(["-"]*10)
 
     def print_show_board_two(self):
-        print " 1 2 3 4 5 6 7 15 9 10"
+        print " 1 2 3 4 5 6 7 8 9 10"
         number = 1
         for o in self.show_board_two:
             print "|" + "|".join(o) + "|" + str(number)
@@ -320,7 +320,7 @@ class GameBattle(object):
             ship3 = True
             while ship3 == True:
                 row_ship_three_horizontal = random.randint(1,10)
-                column_ship_three_horizontal = random.randint(1,15)
+                column_ship_three_horizontal = random.randint(1,8)
                 if self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "-" and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal] == "-"\
                 and self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal+1] == "-":
                     self.board_player_one_to_check[row_ship_three_horizontal-1][column_ship_three_horizontal-1] = "*"
@@ -336,7 +336,7 @@ class GameBattle(object):
             ship3 = True
             while ship3 == True:
                 row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
-                if row_ship_three_horizontal < 1 or row_ship_three_horizontal > 10 or column_ship_three_horizontal < 1 or column_ship_three_horizontal > 15:
+                if row_ship_three_horizontal < 1 or row_ship_three_horizontal > 10 or column_ship_three_horizontal < 1 or column_ship_three_horizontal > 8:
                     self.show_board_one_or_two("1")
                     print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
@@ -358,7 +358,7 @@ class GameBattle(object):
             ship3 = True
             while ship3 == True:
                 row_ship_three_horizontal, column_ship_three_horizontal = self.valid_insert_row_and_column_by_user()
-                if row_ship_three_horizontal < 1 or row_ship_three_horizontal > 10 or column_ship_three_horizontal < 1 or column_ship_three_horizontal > 15:
+                if row_ship_three_horizontal < 1 or row_ship_three_horizontal > 10 or column_ship_three_horizontal < 1 or column_ship_three_horizontal > 8:
                     self.show_board_one_or_two("2")
                     print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
@@ -382,7 +382,7 @@ class GameBattle(object):
         if aleatory_or_no == "aleatory":
             ship3 = True
             while ship3 == True:
-                row_ship_three_vertical = random.randint(1,15)
+                row_ship_three_vertical = random.randint(1,8)
                 column_ship_three_vertical = random.randint(1,10)
                 if self.board_player_one_to_check[row_ship_three_vertical-1][column_ship_three_vertical-1] == "-" and self.board_player_one_to_check[row_ship_three_vertical][column_ship_three_vertical-1] == "-"\
                 and self.board_player_one_to_check[row_ship_three_vertical+1][column_ship_three_vertical-1] == "-":
@@ -399,7 +399,7 @@ class GameBattle(object):
             ship3 = True
             while ship3 == True:
                 row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
-                if row_ship_three_vertical < 1 or row_ship_three_vertical > 15 or column_ship_three_vertical < 1 or column_ship_three_vertical > 10:
+                if row_ship_three_vertical < 1 or row_ship_three_vertical > 8 or column_ship_three_vertical < 1 or column_ship_three_vertical > 10:
                     self.show_board_one_or_two("1")
                     print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
@@ -421,7 +421,7 @@ class GameBattle(object):
             ship3 = True
             while ship3 == True:
                 row_ship_three_vertical, column_ship_three_vertical = self.valid_insert_row_and_column_by_user()
-                if row_ship_three_vertical < 1 or row_ship_three_vertical > 15 or column_ship_three_vertical < 1 or column_ship_three_vertical > 10:
+                if row_ship_three_vertical < 1 or row_ship_three_vertical > 8 or column_ship_three_vertical < 1 or column_ship_three_vertical > 10:
                     self.show_board_one_or_two("2")
                     print "\nTHIS SHIP LEAVES OF THE OCEAN, INSERT OTHER COORDINATES PLEASE"
                     ship3 = True
@@ -610,7 +610,7 @@ class SinglePlayer(GameBattle):
         print row_ship_four_vertical, column_ship_four_vertical
         self.clear()
         life = 0
-        while life <= 15:
+        while life <= 13:
             self.show_players("1")
             self.print_board_player_one()
             row, column = self.alone_the_user()
@@ -642,11 +642,11 @@ class SinglePlayer(GameBattle):
                 self.clear()
                 self.play_again()
             else:
-                if (row < 1 or row > 15) or (column < 1 or column > 15):
+                if (row < 1 or row > 13) or (column < 1 or column > 13):
                     self.clear()
                     print "IT IS NOT IN THE OCEAN\n\n"
                     life +=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (15-life)
+                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (13-life)
 
                 elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "A"\
                 or self.board_player_one[row-1][column-1] == "B" or self.board_player_one[row-1][column-1] == "C"\
@@ -655,7 +655,7 @@ class SinglePlayer(GameBattle):
                     self.clear()
                     print "ALREADY YOU HAVE WRITTEN THOSE COORDINATES\n"
                     life +=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (15-life)
+                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (13-life)
                 elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
                 or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
                     self.board_player_one[row-1][column-1] = "A"
@@ -691,7 +691,7 @@ class SinglePlayer(GameBattle):
                     self.clear()
                     print "TRY AGAIN\n"
                     life+=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS\n" % (15-life)
+                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS\n" % (13-life)
             if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "A" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
             and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "B" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
             and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "C" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
@@ -710,7 +710,7 @@ class SinglePlayer(GameBattle):
                 self.clean_lists()
                 self.clear()
                 self.play_again()
-            if life == 15:
+            if life == 13:
                 self.clear()
                 print """
  ___ ___ _______ _______      _____   _______ _______ _______ 
@@ -1254,7 +1254,7 @@ class MultiPlayer(SinglePlayer):
         print "WHEN YOU DO NOT GUESS RIGHT, WILL APPEAR THIS SYMBOL |X|"
         print "WHEN YOU SHOOT TO THE BOMB, WILL APPEAR THIS SYMBOL |#|"
         print "AND YOU WILL WIN AUTOMATICALLY"
-        print "YOU HAVE 15 LIVES"
+        print "YOU HAVE 13 LIVES"
 
         print "\n----MULTI PLAYER:-----"
         print "\nWHEN ONE OF YOU GUESS RIGHT THE POSITION OF ONE PART OF THE SHIP"
