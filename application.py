@@ -594,19 +594,19 @@ class SinglePlayer(GameBattle):
         row_ship_three_vertical, column_ship_three_vertical = self.ship_three_vertical("aleatory")
         row_ship_four_horizontal, column_ship_four_horizontal = self.ship_four_horizontal("aleatory")
         row_ship_four_vertical, column_ship_four_vertical = self.ship_four_vertical("aleatory")
-        print "bomb"
+        print "the position of the bomb"
         print row_bomb, column_bomb
-        print "\nship of two h"
+        print "\n the position of the ship of two horizontal "
         print row_ship_two_horizontal, column_ship_two_horizontal
-        print "\nship of two v"
+        print "\n the position of the ship of two vertical"
         print row_ship_two_vertical, column_ship_two_vertical
-        print "\nship of three h"
+        print "\n the position of the ship of three horizontal"
         print row_ship_three_horizontal, column_ship_three_horizontal
-        print "\nship of three v"
+        print "\n the position of the ship of three vertical"
         print row_ship_three_vertical, column_ship_three_vertical
-        print "\nship of four h"
+        print "\n the position of the ship of four horizontal"
         print row_ship_four_horizontal, column_ship_four_horizontal
-        print "\nship of four v"
+        print "\nthe position of the ship of four vertical"
         print row_ship_four_vertical, column_ship_four_vertical
         self.clear()
         life = 0
