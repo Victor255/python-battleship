@@ -644,9 +644,9 @@ class SinglePlayer(GameBattle):
             else:
                 if (row < 1 or row > 10) or (column < 1 or column > 10):
                     self.clear()
-                    print "IT IS NOT IN THE OCEAN\n"
+                    print "THESE COORDINATES IS NOT ON THE OCEAN"
                     life +=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (10-life)
+                    print "YOU STILL HAVE %d LIVES" % (10-life)
 
                 elif self.board_player_one[row-1][column-1] == "X" or self.board_player_one[row-1][column-1] == "P"\
                 or self.board_player_one[row-1][column-1] == "A" or self.board_player_one[row-1][column-1] == "T"\
@@ -655,7 +655,7 @@ class SinglePlayer(GameBattle):
                     self.clear()
                     print "ALREADY YOU HAVE WRITTEN THOSE COORDINATES\n"
                     life +=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS" % (10-life)
+                    print "YOU STILL HAVE %d LIVES" % (10-life)
                 elif row == row_ship_two_horizontal and column == column_ship_two_horizontal\
                 or row == row_ship_two_horizontal and column == column_ship_two_horizontal+1:
                     self.board_player_one[row-1][column-1] = "P"
@@ -689,9 +689,9 @@ class SinglePlayer(GameBattle):
                 else:
                     self.board_player_one[row-1][column-1] = "X"
                     self.clear()
-                    print "TRY AGAIN\n"
+                    print "TRY AGAIN"
                     life+=1
-                    print "YOU STILL HAVE %d LIVES, COME ON, YOU CAN SINK THE SHIPS\n" % (10-life)
+                    print "YOU STILL HAVE %d LIVES" % (10-life)
             if self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal-1] == "P" and self.board_player_one[row_ship_two_horizontal-1][column_ship_two_horizontal] == "A"\
             and self.board_player_one[row_ship_two_vertical-1][column_ship_two_vertical-1] == "A" and self.board_player_one[row_ship_two_vertical][column_ship_two_vertical-1] == "B"\
             and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal-1] == "T" and self.board_player_one[row_ship_three_horizontal-1][column_ship_three_horizontal] == "C"\
@@ -702,7 +702,6 @@ class SinglePlayer(GameBattle):
             and self.board_player_one[row_ship_four_vertical-1][column_ship_four_vertical-1] == "C" and self.board_player_one[row_ship_four_vertical][column_ship_four_vertical-1] == "F"\
             and self.board_player_one[row_ship_four_vertical+1][column_ship_four_vertical-1] == "C" and self.board_player_one[row_ship_four_vertical+2][column_ship_four_vertical-1] == "F":
                 self.clear()
-                time.sleep(1)
                 print "YOU HAVE SUNK ALL SHIPS\n"
                 self.show_players("1w")
                 self.print_board_player_one()
@@ -734,7 +733,7 @@ class SinglePlayer(GameBattle):
                 self.clear()
                 self.menu()
             else:
-                self.clear()
+                #self.clear()
                 print "ONLY CAN WRITE y/n \n"
 
 class MultiPlayer(SinglePlayer):
@@ -918,7 +917,7 @@ class MultiPlayer(SinglePlayer):
             else:
                 if (row < 1 or row > 10) or (column < 1 or column > 10):
                     self.clear()
-                    print "IT IS NOT IN THE OCEAN\n"
+                    print "THESE COORDINATES IS NOT ON THE OCEAN"
                 elif self.board_player_two[row-1][column-1] == "X" or self.board_player_two[row-1][column-1] == "P"\
                 or self.board_player_two[row-1][column-1] == "A" or self.board_player_two[row-1][column-1] == "T"\
                 or self.board_player_two[row-1][column-1] == "R" or self.board_player_two[row-1][column-1] == "I"\
